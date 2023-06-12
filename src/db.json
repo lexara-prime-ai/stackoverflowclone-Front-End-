@@ -1,0 +1,9 @@
+{
+    "users": [
+        {
+            "displayName": "elliot_alderson",
+            "email": "f_society@ecorp.com",
+            "password": "mySecretPassword"
+        }
+    ]
+}

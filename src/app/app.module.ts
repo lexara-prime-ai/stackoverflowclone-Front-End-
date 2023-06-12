@@ -13,6 +13,8 @@ import { AppRoutingModule } from "./app-routing.module";
 import { QAPanelComponent } from "./components/pages/QA-panel/QA-panel.component";
 import { AskQuestionComponent } from "./components/pop-ups/questions/ask-question/ask-question.component";
 import { EditQuestionComponent } from "./components/pop-ups/questions/edit-question/edit-question.component";
+import { AdminDashboardComponent } from "./components/pages/dashboard/dashboard.component";
+import { UserProfileComponent } from "./components/pages/user-profile/user-profile.component";
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -35,6 +37,8 @@ import { EditQuestionComponent } from "./components/pop-ups/questions/edit-quest
     QAPanelComponent,
     AskQuestionComponent,
     EditQuestionComponent,
+    AdminDashboardComponent,
+    UserProfileComponent,
     FontAwesomeModule,
     AppRoutingModule,
     BrowserModule,

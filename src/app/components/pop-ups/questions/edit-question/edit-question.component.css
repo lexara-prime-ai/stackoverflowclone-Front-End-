@@ -63,7 +63,7 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    gap: .2rem;
+    gap: .7rem;
     color: var(--amber);
     font-size: 1.1rem;
 }
