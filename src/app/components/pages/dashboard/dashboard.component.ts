@@ -28,6 +28,12 @@ import {
 import { AskQuestionComponent } from "../../pop-ups/questions/ask-question/ask-question.component";
 import { PopUpService } from "src/app/shared/services/pop-up.service";
 import { EditQuestionComponent } from "../../pop-ups/questions/edit-question/edit-question.component";
+import { Observable } from "rxjs";
+import { USER_MODEL } from "src/app/shared/models/user.model";
+import { Store, select } from "@ngrx/store";
+
+import * as fromUser from '../authentication/state/user.reducer';
+import * as userActions from '../authentication/state/user.actions';
 
 @Component({
     selector: "home",
@@ -39,6 +45,8 @@ import { EditQuestionComponent } from "../../pop-ups/questions/edit-question/edi
 export class AdminDashboardComponent implements OnInit {
     /* DEFAULT PROPERTIES */
     isActive: boolean = false;
+    users$!: Observable<USER_MODEL[]>;
+    error$!: Observable<string>;
 
     /* ICONS */
     logo = logo;
@@ -61,9 +69,15 @@ export class AdminDashboardComponent implements OnInit {
     trashIcon: IconDefinition = faTrash;
 
     // INJECT MODULAR SERVICES
-    constructor(private popUpService: PopUpService) { }
+    constructor(private popUpService: PopUpService, private store: Store<fromUser.AppState>) { }
 
     ngOnInit() {
-        
+        this.displayUsers();
+        this.error$ = this.store.pipe(select(fromUser.getError));
+    }
+
+    displayUsers() {
+        this.store.dispatch(new userActions.LoadUsers());
+        this.users$ = this.store.pipe(select(fromUser.getUsers));
     }
 }

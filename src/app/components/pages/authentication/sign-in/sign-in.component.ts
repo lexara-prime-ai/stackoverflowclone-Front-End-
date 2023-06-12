@@ -24,6 +24,7 @@ import {
 } from "@angular/forms";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { RouterModule } from "@angular/router";
+import { UserService } from "src/app/shared/services/users.service";
 
 @Component({
   selector: "sign-in",
@@ -41,12 +42,12 @@ export class SignInComponent implements OnInit {
   SIGN_IN_FORM!: FormGroup;
   DEFAULT_FORM_DATA = DEFAULT_FORM_DATA;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
 
   ngOnInit(): void {
     this.SIGN_IN_FORM = this.formBuilder.group({
-      email: ["", Validators.required],
-      password: ["", Validators.required],
+      email: ["", [Validators.required, this.userService.EMAIL_PATTERN_VALIDATOR()]],
+      password: ["", [Validators.required, this.userService.PASSWORD_PATTERN_VALIDATOR()]],
     });
   }
 }

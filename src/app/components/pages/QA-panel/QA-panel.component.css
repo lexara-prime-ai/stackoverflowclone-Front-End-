@@ -11,15 +11,16 @@
     display: grid;
     -ms-grid-columns: 1fr 4fr;
     grid-template-columns: 1fr 4fr;
-    /* align-items: center; */
 }
 
 .side-navigation {
     -webkit-box-shadow: var(--shadow-dark);
     box-shadow: var(--shadow-dark);
     position: sticky;
+    height: 100vh;
     top: 0;
     left: 0;
+    z-index: 9;
 }
 
 .logo {

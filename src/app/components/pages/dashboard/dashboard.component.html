@@ -162,13 +162,13 @@
                 <!--==============-->
                 <div class="users">
                     <!-- USER -->
-                    <div class="user">
+                    <div class="user" *ngFor="let user of (users$ | async)">
                         <!-- USER INFO -->
                         <div class="user-info">
                             <fa-icon class="user-icon" [icon]="userIcon"></fa-icon>
                             <!-- DISPLAY NAME -->
                             <h3 class="display-name">
-                                jonathan_ndambuki
+                                {{user.displayName}}
                             </h3>
                         </div>
                         <!-- ADMIN CONTROLS -->
@@ -182,27 +182,7 @@
                         </div>
                     </div>
                     <!-- USER END -->
-                    <!-- USER -->
-                    <div class="user">
-                        <!-- USER INFO -->
-                        <div class="user-info">
-                            <fa-icon class="user-icon" [icon]="userIcon"></fa-icon>
-                            <!-- DISPLAY NAME -->
-                            <h3 class="display-name">
-                                evans kibet
-                            </h3>
-                        </div>
-                        <!-- ADMIN CONTROLS -->
-                        <div class="admin-controls">
-                            <!-- ACTIVITY INDICATOR -->
-                            <h3 class="activity-indicator">
-                                active
-                            </h3>
-
-                            <fa-icon class="trash-icon" [icon]="trashIcon"></fa-icon>
-                        </div>
-                    </div>
-                    <!-- USER END -->
+                   
                 </div>
             </div>
             <!--====================-->

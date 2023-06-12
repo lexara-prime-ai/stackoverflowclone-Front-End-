@@ -3,7 +3,122 @@
         {
             "displayName": "elliot_alderson",
             "email": "f_society@ecorp.com",
-            "password": "mySecretPassword"
+            "password": "mySecretPassword",
+            "id": 1
+        },
+        {
+            "displayName": "tyrell_wellick",
+            "email": "tyrell_wellick@ecorp.com",
+            "password": "fsocietyRocks",
+            "id": 2
+        },
+        {
+            "displayName": "angela_moss",
+            "email": "angela_moss@ecorp.com",
+            "password": "wh1ter0se",
+            "id": 3
+        },
+        {
+            "displayName": "darlene_alderson",
+            "email": "darlene_alderson@fsociety.com",
+            "password": "d0llp@rts",
+            "id": 4
+        },
+        {
+            "displayName": "dom_di_pierro",
+            "email": "dom_di_pierro@fbi.gov",
+            "password": "darkArmy2023",
+            "id": 5
+        },
+        {
+            "displayName": "mr_robot",
+            "email": "mr_robot@fsociety.com",
+            "password": "revolution4ever",
+            "id": 6
+        },
+        {
+            "displayName": "whiterose",
+            "email": "whiterose@darkarmy.net",
+            "password": "timeMachine",
+            "id": 7
+        },
+        {
+            "displayName": "leon_trenton",
+            "email": "leon_trenton@darkweb.com",
+            "password": "burnThemAll!",
+            "id": 8
+        },
+        {
+            "displayName": "joanna_wellick",
+            "email": "joanna_wellick@ecorp.com",
+            "password": "JoannaRIP",
+            "id": 9
+        },
+        {
+            "displayName": "shayla_nico",
+            "email": "shayla_nico@ecorp.com",
+            "password": "ShaylaForever",
+            "id": 10
+        },
+        {
+            "displayName": "trenton_biswas",
+            "email": "trenton_biswas@fsociety.com",
+            "password": "Heartbleed",
+            "id": 11
+        },
+        {
+            "displayName": "phillip_price",
+            "email": "phillip_price@ecorp.com",
+            "password": "ec0n0m1cP0wer",
+            "id": 12
+        },
+        {
+            "displayName": "terry_colby",
+            "email": "terry_colby@ecorp.com",
+            "password": "AllSafeSucks",
+            "id": 13
+        },
+        {
+            "displayName": "scott_knowles",
+            "email": "scott_knowles@ecorp.com",
+            "password": "SharonKnowles",
+            "id": 14
+        },
+        {
+            "displayName": "gideon_godard",
+            "email": "gideon_godard@allsafe.com",
+            "password": "d3l3teAllF!les",
+            "id": 15
+        },
+        {
+            "displayName": "ray_haynes",
+            "email": "ray_haynes@raylon.com",
+            "password": "Ctrl-Alt-Del",
+            "id": 16
+        },
+        {
+            "displayName": "susan_jacobs",
+            "email": "susan_jacobs@ecorp.com",
+            "password": "SunnyDayz",
+            "id": 17
+        },
+        {
+            "displayName": "mobley",
+            "email": "mobley@fsociety.com",
+            "password": "UnixTime123",
+            "id": 18
+        },
+        {
+            "displayName": "irving",
+            "email": "irving@darkarmy.net",
+            "password": "DarkArmyRules",
+            "id": 19
+        },
+        {
+            "displayName": "lloyd_chung",
+            "email": "lloyd_chung@fsociety.com",
+            "password": "EncryptedPass",
+            "id": 20
         }
     ]
 }

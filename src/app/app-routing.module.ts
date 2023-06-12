@@ -1,42 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './components/pages/home/home.component';
-import { SignUpComponent } from './components/pages/sign-up/sign-up.component';
-import { SignInComponent } from './components/pages/sign-in/sign-in.component';
-import { PasswordResetComponent } from './components/pages/password-reset/password-reset.component';
-import { QAPanelComponent } from './components/pages/QA-panel/QA-panel.component';
-import { AdminDashboardComponent } from './components/pages/dashboard/dashboard.component';
-import { UserProfileComponent } from './components/pages/user-profile/user-profile.component';
-
 
 const routes: Routes = [
     {
         path: "",
-        component: HomeComponent
+        loadComponent: () => import('./components/pages/home/home.component').then(component => component.HomeComponent)
     },
     {
         path: "dashboard",
-        component: AdminDashboardComponent
+        loadComponent: () => import('./components/pages/dashboard/dashboard.component').then(component => component.AdminDashboardComponent)
     },
     {
         path: "user-profile",
-        component: UserProfileComponent
+        loadComponent: () => import('./components/pages/user-profile/user-profile.component').then(component => component.UserProfileComponent)
     },
     {
         path: "sign-up",
-        component: SignUpComponent
+        loadComponent: () => import('./components/pages/authentication/sign-up/sign-up.component').then(component => component.SignUpComponent)
     },
     {
         path: "sign-in",
-        component: SignInComponent
+        loadComponent: () => import('./components/pages/authentication/sign-in/sign-in.component').then(component => component.SignInComponent)
     },
     {
         path: "reset",
-        component: PasswordResetComponent
+        loadComponent: () => import('./components/pages/authentication/password-reset/password-reset.component').then(component => component.PasswordResetComponent)
     },
     {
         path: "questions",
-        component: QAPanelComponent
+        loadComponent: () => import('./components/pages/QA-panel/QA-panel.component').then(component => component.QAPanelComponent)
     }
 ];
 

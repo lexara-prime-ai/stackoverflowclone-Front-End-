@@ -4,17 +4,23 @@ import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { AppComponent } from "./app.component";
-import { SignUpComponent } from "./components/pages/sign-up/sign-up.component";
-import { SignInComponent } from "./components/pages/sign-in/sign-in.component";
+import { SignUpComponent } from "./components/pages/authentication/sign-up/sign-up.component";
+import { SignInComponent } from "./components/pages/authentication/sign-in/sign-in.component";
 import { RouterModule } from "@angular/router";
 import { NgModel } from "@angular/forms";
-import { PasswordResetComponent } from "./components/pages/password-reset/password-reset.component";
+import { PasswordResetComponent } from "./components/pages/authentication/password-reset/password-reset.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { QAPanelComponent } from "./components/pages/QA-panel/QA-panel.component";
 import { AskQuestionComponent } from "./components/pop-ups/questions/ask-question/ask-question.component";
 import { EditQuestionComponent } from "./components/pop-ups/questions/edit-question/edit-question.component";
 import { AdminDashboardComponent } from "./components/pages/dashboard/dashboard.component";
 import { UserProfileComponent } from "./components/pages/user-profile/user-profile.component";
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { EffectsModule } from "@ngrx/effects";
+import { userReducer } from "./components/pages/authentication/state/user.reducer";
+import { HttpClientModule } from "@angular/common/http";
+import { UserEffect } from "./components/pages/authentication/state/user.effect";
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -43,6 +49,12 @@ import { UserProfileComponent } from "./components/pages/user-profile/user-profi
     AppRoutingModule,
     BrowserModule,
     RouterModule,
+    StoreModule.forRoot({}),
+    StoreModule.forFeature("users", userReducer),
+    StoreDevtoolsModule.instrument(),
+    EffectsModule.forRoot({}),
+    EffectsModule.forFeature(UserEffect),
+    HttpClientModule
   ],
 })
 export class AppModule { }
