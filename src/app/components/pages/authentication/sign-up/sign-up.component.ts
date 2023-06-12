@@ -24,6 +24,10 @@ import {
   IconDefinition,
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
+
+import * as userActions from '../state/user.actions';
+import * as fromUser from '../state/user.reducer';
+import { Store } from "@ngrx/store";
 import { UserService } from "src/app/shared/services/users.service";
 
 @Component({
@@ -41,7 +45,7 @@ export class SignUpComponent implements OnInit {
   DEFAULT_FORM_DATA = DEFAULT_FORM_DATA;
   SIGN_UP_FORM!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService) { }
+  constructor(private formBuilder: FormBuilder, private userService: UserService, private store: Store<fromUser.AppState>) { }
 
   ngOnInit(): void {
     this.SIGN_UP_FORM = this.formBuilder.group({
@@ -49,5 +53,20 @@ export class SignUpComponent implements OnInit {
       email: ["", [Validators.required, this.userService.EMAIL_PATTERN_VALIDATOR()]],
       password: ["", [Validators.required, this.userService.PASSWORD_PATTERN_VALIDATOR()]],
     });
+  }
+
+  /* CREATE USER */
+  createUser() {
+    const newUser: any = {
+      displayName: this.SIGN_UP_FORM.get("displayName")?.value,
+      email: this.SIGN_UP_FORM.get("email")?.value,
+      password: this.SIGN_UP_FORM.get("password")?.value
+    };
+
+    this.store.dispatch(new userActions.CreateUser(newUser));
+
+    // RESET FORM HERE
+
+    // REDIRECT TO QA PANEL
   }
 }

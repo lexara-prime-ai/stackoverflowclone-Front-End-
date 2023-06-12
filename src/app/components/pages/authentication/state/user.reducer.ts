@@ -36,7 +36,8 @@ export function userReducer(
     state = initialState,
     action: userActions.extendedAction
 ): UserState {
-    switch(action.type) {
+    switch (action.type) {
+        /* ALL USERS */
         case userActions.UserActionTypes.LOAD_USERS_SUCCESS: {
             return userAdapter.addMany(action.payload, {
                 ...state,
@@ -50,6 +51,31 @@ export function userReducer(
                 entities: {},
                 loading: false,
                 loaded: false,
+                error: action.payload
+            }
+        }
+
+        /* SINGLE USER */
+        case userActions.UserActionTypes.LOAD_USER_SUCCESS: {
+            return userAdapter.addOne(action.payload, {
+                ...state,
+                selectedUserId: action.payload.id
+            })
+        }
+        case userActions.UserActionTypes.LOAD_USER_FAIL: {
+            return {
+                ...state,
+                error: action.payload
+            }
+        }
+
+        /* CREATE USER */
+        case userActions.UserActionTypes.CREATE_USER_SUCCESS: {
+            return userAdapter.addOne(action.payload, state);
+        }
+        case userActions.UserActionTypes.CREATE_USER_FAIL: {
+            return {
+                ...state,
                 error: action.payload
             }
         }
@@ -83,3 +109,16 @@ export const getError = createSelector(
     getUserFeatureState,
     (state: UserState) => state.error
 );
+
+// SELECTORS FOR LOADING SELECTOR USER IN EDIT PROFILE COMPONENT
+export const getCurrentUserId = createSelector(
+    getUserFeatureState,
+    (state: UserState) => state.selectedUserId
+)
+
+export const getCurentUser = createSelector(
+    getUserFeatureState,
+    getCurrentUserId,
+    state => state.selectedUserId !== null ? state.entities
+    [state.selectedUserId] : null
+)

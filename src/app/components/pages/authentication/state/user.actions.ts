@@ -6,9 +6,26 @@ import { USER_MODEL } from "../../../../shared/models/user.model";
 
 /* USER ACTION TYPES */
 export enum UserActionTypes {
+    // ALL USERS
     LOAD_USERS = '[User] Load Users',
     LOAD_USERS_SUCCESS = '[User] Load Users Success',
-    LOAD_USERS_FAIL = '[User] Load Users Fail'
+    LOAD_USERS_FAIL = '[User] Load Users Fail',
+    // SINGLE USER
+    LOAD_USER = '[User] Load User',
+    LOAD_USER_SUCCESS = '[User] Load User Success',
+    LOAD_USER_FAIL = '[User] Load User Fail',
+    // CREATE USER
+    CREATE_USER = '[User] Create User',
+    CREATE_USER_SUCCESS = '[User] Create User Success',
+    CREATE_USER_FAIL = '[User] Create User Fail',
+    // UPDATE USER
+    UPDATE_USER = '[User] Update User',
+    UPDATE_USER_SUCCESS = '[User] Update User Success',
+    UPDATE_USERS_FAIL = '[User] Update User Fail',
+    // DELETE USER
+    DELETE_USER = '[User] Delete User',
+    DELETE_USER_SUCCESS = '[User] Delete User Success',
+    DELETE_USERS_FAIL = '[User] Delete User Fail',
 }
 
 /* LOAD USER CLASSES */
@@ -28,5 +45,57 @@ export class LoadUsersFail implements Action {
     constructor(public payload: string) { }
 }
 
+/* LOAD USER */
+export class LoadUser implements Action {
+    readonly type = UserActionTypes.LOAD_USER;
+
+    constructor(public payload: number) { }
+}
+
+export class LoadUserSuccess implements Action {
+    readonly type = UserActionTypes.LOAD_USER_SUCCESS;
+
+    constructor(public payload: USER_MODEL) { }
+}
+
+export class LoadUserFail implements Action {
+    readonly type = UserActionTypes.LOAD_USER_FAIL;
+
+    constructor(public payload: string) { }
+}
+
+/* CREATE USER */
+export class CreateUser implements Action {
+    readonly type = UserActionTypes.CREATE_USER;
+
+    constructor(public payload: USER_MODEL) { }
+}
+
+export class CreateUserSuccess implements Action {
+    readonly type = UserActionTypes.CREATE_USER_SUCCESS;
+
+    constructor(public payload: USER_MODEL) { }
+}
+
+export class CreateUserFail implements Action {
+    readonly type = UserActionTypes.CREATE_USER_FAIL;
+
+    constructor(public payload: string) { }
+}
+
+/* UPDATE USER */
+
+
+
 // EXPORT EXTENDED ACTION
-export type extendedAction = LoadUsers | LoadUsersSuccess | LoadUsersFail;
+export type extendedAction =
+    LoadUsers |
+    LoadUsersSuccess |
+    LoadUsersFail |
+    LoadUser |
+    LoadUserSuccess |
+    LoadUserFail |
+    CreateUser |
+    CreateUserSuccess |
+    CreateUserFail
+    ;

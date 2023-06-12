@@ -35,4 +35,41 @@ export class UserEffect {
         )
     )
 
+    /* GET SINGLE USER */
+    loadUser$: Observable<Action> = createEffect(() =>
+        this.actions$.pipe(
+            ofType<userActions.LoadUser>(
+                userActions.UserActionTypes.LOAD_USER
+            ),
+            mergeMap((action: userActions.LoadUser) =>
+                this.userService.getUserById(action.payload).pipe(
+                    map(
+                        (user: USER_MODEL) =>
+                            new userActions.LoadUserSuccess(user)
+                    ),
+                    catchError(err => of(new userActions.LoadUserFail(err)))
+                )
+            )
+        )
+    )
+
+    /* CREATE USER */
+    createUser$: Observable<Action> = createEffect(() =>
+        this.actions$.pipe(
+            ofType<userActions.CreateUser>(
+                userActions.UserActionTypes.CREATE_USER
+            ),
+            map((action: userActions.CreateUser) => action.payload),
+            mergeMap((user: USER_MODEL) =>
+                this.userService.createUser(user).pipe(
+                    map(
+                        (newUser: USER_MODEL) =>
+                            new userActions.CreateUserSuccess(newUser)
+                    ),
+                    catchError(err => of(new userActions.CreateUserFail(err)))
+                )
+            )
+        )
+    )
+
 }

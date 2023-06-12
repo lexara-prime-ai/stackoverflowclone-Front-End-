@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ValidatorFn, Validators } from '@angular/forms';
-import { HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { USER_MODEL } from '../models/user.model'
 
@@ -13,13 +13,21 @@ export class UserService {
 
     constructor(private HTTP: HttpClient) { }
 
+    /* GET ALL USERS */
     getUsers(): Observable<USER_MODEL[]> {
         console.log('Fetching Users...');
         return this.HTTP.get<USER_MODEL[]>(this.BASE_URL + '/users');
     }
 
+    /* GET USER BY ID */
+    getUserById(payload: number): Observable<USER_MODEL> {
+        return this.HTTP.get<USER_MODEL>(this.BASE_URL + `/users${payload}`);
+    }
 
-
+    /* CREATE USER */
+    createUser(payload: USER_MODEL): Observable<USER_MODEL> {
+        return this.HTTP.post<USER_MODEL>(this.BASE_URL + '/users', payload);
+    }
 
 
 
