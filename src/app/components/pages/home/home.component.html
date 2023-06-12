@@ -24,11 +24,11 @@
             <!-- CTA BUTTONS -->
             <div class="cta-actions">
                 <div class="btn-container">
-                    <button class="sign-in-btn btn">
+                    <button class="sign-in-btn btn" [routerLink]="'sign-in'">
                         Sign In
                     </button>
 
-                    <button class="sign-up-btn btn">
+                    <button class="sign-up-btn btn" [routerLink]="'sign-up'">
                         Sign Up
                     </button>
                 </div>
@@ -76,7 +76,7 @@
             <!-- CARD END -->
 
             <!-- CARD START -->
-            <div class="card">
+            <div class="card medium">
                 <!-- QUESTION -->
                 <h3 class="question">
                     Why am I getting a "SyntaxError: unexpected token" in my JavaScript program?
@@ -106,7 +106,7 @@
             <!-- CARD END -->
 
             <!-- CARD START -->
-            <div class="card shift-right">
+            <div class="card shift-right low">
                 <!-- QUESTION -->
                 <h3 class="question">
                     How can I sort a list of objects based on a specific attribute?

@@ -4,6 +4,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { SignUpComponent } from './components/pages/sign-up/sign-up.component';
 import { SignInComponent } from './components/pages/sign-in/sign-in.component';
 import { PasswordResetComponent } from './components/pages/password-reset/password-reset.component';
+import { QAPanelComponent } from './components/pages/QA-panel/QA-panel.component';
 
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
     {
         path: "reset",
         component: PasswordResetComponent
+    },
+    {
+        path: "questions",
+        component: QAPanelComponent
     }
 ];
 

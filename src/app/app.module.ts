@@ -10,6 +10,7 @@ import { RouterModule } from "@angular/router";
 import { NgModel } from "@angular/forms";
 import { PasswordResetComponent } from "./components/pages/password-reset/password-reset.component";
 import { AppRoutingModule } from "./app-routing.module";
+import { QAPanelComponent } from "./components/pages/QA-panel/QA-panel.component";
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -29,6 +30,7 @@ import { AppRoutingModule } from "./app-routing.module";
     SignUpComponent,
     SignInComponent,
     PasswordResetComponent,
+    QAPanelComponent,
     FontAwesomeModule,
     AppRoutingModule,
     BrowserModule,

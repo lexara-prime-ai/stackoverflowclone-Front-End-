@@ -129,6 +129,22 @@
 }
 
 /* RIGHT CONTENT STYLING */
+
+/* 
+* ----------
+* VARIABLES 
+*-----------
+*/
+
+/* OPACITY LEVELS */
+.medium {
+    opacity: .95;
+}
+
+.low {
+    opacity: .85;
+}
+
 .content .card-container {
     margin-top: 5vh;
 }

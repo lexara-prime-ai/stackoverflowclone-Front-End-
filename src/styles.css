@@ -11,7 +11,9 @@
 :root {
     /* COLOR PALETTE */
     --white: #fbfbfb;
-    --black: #242424;
+    --black: #686868;
+    --gray: #c5c5c5;
+    --lighter-gray: #ebebeb;
     --light-gray: #e2dfdf;
     --dark-gray: #9d9d9c;
     --light-blue: #d4e4f0;
