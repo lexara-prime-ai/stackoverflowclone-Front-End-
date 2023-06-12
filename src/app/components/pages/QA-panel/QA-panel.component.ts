@@ -2,7 +2,7 @@
 const logo = "../../../assets/logos/web/png/logo_colored.png" as string;
 
 import { CommonModule } from "@angular/common";
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import {
@@ -28,16 +28,22 @@ import {
     faGlobe,
     faQuestionCircle
 } from "@fortawesome/free-solid-svg-icons";
+import { AskQuestionComponent } from "../../pop-ups/questions/ask-question/ask-question.component";
+import { PopUpService } from "src/app/shared/services/pop-up.service";
+import { EditQuestionComponent } from "../../pop-ups/questions/edit-question/edit-question.component";
 
 @Component({
     selector: "home",
     templateUrl: "QA-panel.component.html",
     styleUrls: ["QA-panel.component.css"],
     standalone: true,
-    imports: [CommonModule, RouterModule, FontAwesomeModule],
+    imports: [CommonModule, RouterModule, FontAwesomeModule, AskQuestionComponent, EditQuestionComponent],
 })
-export class QAPanelComponent {
+export class QAPanelComponent implements OnInit {
     /* DEFAULT PROPERTIES */
+    isActive: boolean = false;
+
+    /* ICONS */
     logo = logo;
     menuIcon: IconDefinition = faBars;
     searchIcon: IconDefinition = faSearch;
@@ -59,4 +65,23 @@ export class QAPanelComponent {
     penIcon: IconDefinition = faPen;
     pinIcon: IconDefinition = faLocation;
     globeIcon: IconDefinition = faGlobe;
+
+    // INJECT MODULAR SERVICES
+    constructor(private popUpService: PopUpService) { }
+
+    ngOnInit() {
+        
+    }
+
+    // CHANGE isActive STATE TO true
+    alter_ASK_QUESTION_FORM_state(): void {
+        // EMITS A BOOLEAN VALUE, true
+        this.popUpService.openAskQuestionForm();
+    }
+
+    // CHANGE isActive STATE TO true
+    alter_EDIT_QUESTION_FORM_state(): void {
+        // EMITS A BOOLEAN VALUE true
+        this.popUpService.openEditQuestionForm();
+    }
 }

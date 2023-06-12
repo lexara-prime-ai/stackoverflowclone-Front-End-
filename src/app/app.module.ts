@@ -11,6 +11,8 @@ import { NgModel } from "@angular/forms";
 import { PasswordResetComponent } from "./components/pages/password-reset/password-reset.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { QAPanelComponent } from "./components/pages/QA-panel/QA-panel.component";
+import { AskQuestionComponent } from "./components/pop-ups/questions/ask-question/ask-question.component";
+import { EditQuestionComponent } from "./components/pop-ups/questions/edit-question/edit-question.component";
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -31,6 +33,8 @@ import { QAPanelComponent } from "./components/pages/QA-panel/QA-panel.component
     SignInComponent,
     PasswordResetComponent,
     QAPanelComponent,
+    AskQuestionComponent,
+    EditQuestionComponent,
     FontAwesomeModule,
     AppRoutingModule,
     BrowserModule,

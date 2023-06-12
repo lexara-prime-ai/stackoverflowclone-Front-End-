@@ -457,6 +457,10 @@
     font-weight: 600;
 }
 
+.card-icon {
+    cursor: pointer;
+}
+
 /* STYLING FOR ADDITIONAL CONTENT */
 .section-title {
     padding-left: 2rem;

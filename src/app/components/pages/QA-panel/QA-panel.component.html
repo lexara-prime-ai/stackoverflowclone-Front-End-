@@ -65,7 +65,7 @@
                 <li class="link-item">
                     <!-- INDICATOR -->
                     <span class="indicator"></span>
-                    <a class="link">
+                    <a class="link" (click)="alter_ASK_QUESTION_FORM_state()">
                         <fa-icon [icon]="bullHornIcon"></fa-icon>
                         ASK QUESTIONS
                     </a>
@@ -149,6 +149,11 @@
                 </div>
             </div>
         </header>
+        <!--=============================-->
+        <!--=============================-->
+
+        <!--=============================-->
+        <!--=============================-->
         <!-- MAIN CONTENT: Questions etc -->
         <div class="wrapper">
             <!-- MAIN CONTENT -->
@@ -219,7 +224,8 @@
 
                             <!-- POST INFO -->
                             <div class="post-info">
-                                <fa-icon class="card-icon" [icon]="penIcon"></fa-icon>
+                                <fa-icon class="card-icon" [icon]="penIcon"
+                                    (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
                                 <h4 class="info">
                                     modified 1 min ago
                                     <span>
@@ -307,7 +313,8 @@
 
                             <!-- POST INFO -->
                             <div class="post-info">
-                                <fa-icon class="card-icon" [icon]="penIcon"></fa-icon>
+                                <fa-icon class="card-icon" [icon]="penIcon"
+                                    (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
                                 <h4 class="info">
                                     modified 1 min ago
                                     <span>
@@ -395,7 +402,8 @@
 
                             <!-- POST INFO -->
                             <div class="post-info">
-                                <fa-icon class="card-icon" [icon]="penIcon"></fa-icon>
+                                <fa-icon class="card-icon" [icon]="penIcon"
+                                    (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
                                 <h4 class="info">
                                     modified 1 min ago
                                     <span>
@@ -626,13 +634,15 @@
                                 Describe the concept of closure in Javascript as best as you could
                             </p>
                         </div>
-                     
-
                     </div>
                 </div>
             </div>
-
-            
         </div>
     </div>
 </div>
+
+<!--===== COMPONENTS ====-->
+<!-- EDIT QUESTION COMPONENT -->
+<edit-question></edit-question>
+<!-- ASK QUESTION COMPONENT -->
+<ask-question></ask-question>
