@@ -37,7 +37,7 @@ export function questionReducer(
     action: questionActions.extendedAction
 ): QuestionState {
     switch (action.type) {
-        /* ALL QQUESTIONS */
+        /* ALL QUESTIONS */
         case questionActions.QuestionActionTypes.LOAD_QUESTIONS_SUCCESS: {
             return questionAdapter.addMany(action.payload, {
                 ...state,

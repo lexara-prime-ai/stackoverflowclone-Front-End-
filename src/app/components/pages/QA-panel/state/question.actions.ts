@@ -15,9 +15,9 @@ export enum QuestionActionTypes {
     LOAD_QUESTION_SUCCESS = "[Question] Load Question Success",
     LOAD_QUESTION_FAIL = "[Question] Load Question Fail",
     // ADD QUESTION
-    ADD_QUESTION = "[Question] Create Question",
-    ADD_QUESTION_SUCCESS = "[Question] Create Question Success",
-    ADD_QUESTION_FAIL = "[Question] Create Question Fail",
+    ADD_QUESTION = "[Question] Add Question",
+    ADD_QUESTION_SUCCESS = "[Question] Add Question Success",
+    ADD_QUESTION_FAIL = "[Question] Add Question Fail",
     // UPDATE QUESTION
     UPDATE_QUESTION = "[Question] Update Question",
     UPDATE_QUESTION_SUCCESS = "[Question] Update Question Success",
