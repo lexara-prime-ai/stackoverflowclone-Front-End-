@@ -11,7 +11,7 @@ import { QUESTION_MODEL } from "src/app/shared/models/question.model";
 import { QuestionService } from "src/app/shared/services/questions.service";
 
 @Injectable()
-export class UserEffect {
+export class QuestionEffect {
   constructor(private actions$: Actions, private questionService: QuestionService) { }
 
   /* GET ALL QUESTIONS */
