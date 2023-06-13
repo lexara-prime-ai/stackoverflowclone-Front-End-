@@ -14,7 +14,7 @@ import { QuestionService } from "src/app/shared/services/questions.service";
 export class UserEffect {
   constructor(private actions$: Actions, private questionService: QuestionService) { }
 
-  /* GET ALL USERS */
+  /* GET ALL QUESTIONS */
   loadQuestions$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType<questionActions.LoadQuestions>(questionActions.QuestionActionTypes.LOAD_QUESTIONS),
@@ -27,7 +27,7 @@ export class UserEffect {
     )
   );
 
-  /* GET SINGLE USER */
+  /* GET SINGLE QUESTION */
   loadQuestion$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType<questionActions.LoadQuestion>(questionActions.QuestionActionTypes.LOAD_QUESTION),
@@ -40,7 +40,7 @@ export class UserEffect {
     )
   );
 
-  /* CREATE USER */
+  /* ADD QUESTION */
   addQuestion$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType<questionActions.AddQuestion>(questionActions.QuestionActionTypes.ADD_QUESTION),
@@ -56,7 +56,7 @@ export class UserEffect {
     )
   );
 
-  /* UPDATE USER */
+  /* UPDATE QUESTION */
   updateQuestion$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType<questionActions.UpdateQuestion>(questionActions.QuestionActionTypes.UPDATE_QUESTION),
@@ -76,7 +76,7 @@ export class UserEffect {
     )
   );
 
-  /* DELETE USER */
+  /* DELETE QUESTION */
   deleteQuestion$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType<questionActions.DeleteQuestion>(questionActions.QuestionActionTypes.DELETE_QUESTION),

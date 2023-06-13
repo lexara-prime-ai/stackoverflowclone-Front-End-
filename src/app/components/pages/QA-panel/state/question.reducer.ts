@@ -1,51 +1,51 @@
-import * as userActions from './question.actions';
+import * as questionActions from './question.actions';
 
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 
-import { USER_MODEL } from '../../../../shared/models/user.model';
+import { QUESTION_MODEL } from '../../../../shared/models/question.model';
 import * as fromRoot from '../../../../state/app.state';
 
 
-export interface UserState extends EntityState<USER_MODEL> {
-    selectedUserId: number | null,
+export interface QuestionState extends EntityState<QUESTION_MODEL> {
+    selectedQuestionId: number | null,
     loading: boolean,
     loaded: boolean,
     error: string
 }
 
 export interface AppState extends fromRoot.AppState {
-    users: UserState
+    questions: QuestionState
 }
 
-export const userAdapter: EntityAdapter<USER_MODEL> = createEntityAdapter<USER_MODEL>();
+export const questionAdapter: EntityAdapter<QUESTION_MODEL> = createEntityAdapter<QUESTION_MODEL>();
 
-export const defaultUser: UserState = {
+export const defaultQuestion: QuestionState = {
     ids: [],
     entities: {},
-    selectedUserId: null,
+    selectedQuestionId: null,
     loading: false,
     loaded: false,
     error: ""
 }
 
-export const initialState = userAdapter.getInitialState((defaultUser));
+export const initialState = questionAdapter.getInitialState((defaultQuestion));
 
-export function userReducer(
+export function questionReducer(
     state = initialState,
-    action: userActions.extendedAction
-): UserState {
+    action: questionActions.extendedAction
+): QuestionState {
     switch (action.type) {
-        /* ALL USERS */
-        case userActions.UserActionTypes.LOAD_USERS_SUCCESS: {
-            return userAdapter.addMany(action.payload, {
+        /* ALL QQUESTIONS */
+        case questionActions.QuestionActionTypes.LOAD_QUESTIONS_SUCCESS: {
+            return questionAdapter.addMany(action.payload, {
                 ...state,
                 loading: false,
                 loaded: true
             })
         }
-        case userActions.UserActionTypes.LOAD_USERS_FAIL: {
+        case questionActions.QuestionActionTypes.LOAD_QUESTIONS_FAIL: {
             return {
                 ...state,
                 entities: {},
@@ -55,25 +55,25 @@ export function userReducer(
             }
         }
 
-        /* SINGLE USER */
-        case userActions.UserActionTypes.LOAD_USER_SUCCESS: {
-            return userAdapter.addOne(action.payload, {
+        /* SINGLE QUESTION */
+        case questionActions.QuestionActionTypes.LOAD_QUESTION_SUCCESS: {
+            return questionAdapter.addOne(action.payload, {
                 ...state,
-                selectedUserId: action.payload.id
+                selectedQuestionId: action.payload.id
             })
         }
-        case userActions.UserActionTypes.LOAD_USER_FAIL: {
+        case questionActions.QuestionActionTypes.LOAD_QUESTION_FAIL: {
             return {
                 ...state,
                 error: action.payload
             }
         }
 
-        /* CREATE USER */
-        case userActions.UserActionTypes.CREATE_USER_SUCCESS: {
-            return userAdapter.addOne(action.payload, state);
+        /* ADD QUESTION */
+        case questionActions.QuestionActionTypes.ADD_QUESTION_SUCCESS: {
+            return questionAdapter.addOne(action.payload, state);
         }
-        case userActions.UserActionTypes.CREATE_USER_FAIL: {
+        case questionActions.QuestionActionTypes.ADD_QUESTION_FAIL: {
             return {
                 ...state,
                 error: action.payload
@@ -86,39 +86,39 @@ export function userReducer(
 }
 
 /* FEATURE SELECTORS */
-const getUserFeatureState = createFeatureSelector<UserState>(
+const getQuestionFeatureState = createFeatureSelector<QuestionState>(
     "users"
 );
 
-export const getUsers = createSelector(
-    getUserFeatureState,
-    userAdapter.getSelectors().selectAll
+export const getQuestions = createSelector(
+    getQuestionFeatureState,
+    questionAdapter.getSelectors().selectAll
 );
 
-export const getUsersLoading = createSelector(
-    getUserFeatureState,
-    (state: UserState) => state.loading
+export const getQuestionsLoading = createSelector(
+    getQuestionFeatureState,
+    (state: QuestionState) => state.loading
 );
 
-export const getUsersLoaded = createSelector(
-    getUserFeatureState,
-    (state: UserState) => state.loaded
+export const getQuestionsLoaded = createSelector(
+    getQuestionFeatureState,
+    (state: QuestionState) => state.loaded
 );
 
 export const getError = createSelector(
-    getUserFeatureState,
-    (state: UserState) => state.error
+    getQuestionFeatureState,
+    (state: QuestionState) => state.error
 );
 
-// SELECTORS FOR LOADING SELECTOR USER IN EDIT PROFILE COMPONENT
-export const getCurrentUserId = createSelector(
-    getUserFeatureState,
-    (state: UserState) => state.selectedUserId
+// SELECTORS 
+export const getCurrentQuestionId = createSelector(
+    getQuestionFeatureState,
+    (state: QuestionState) => state.selectedQuestionId
 )
 
-export const getCurentUser = createSelector(
-    getUserFeatureState,
-    getCurrentUserId,
-    state => state.selectedUserId !== null ? state.entities
-    [state.selectedUserId] : null
+export const getCurentQuestion = createSelector(
+    getQuestionFeatureState,
+    getCurrentQuestionId,
+    state => state.selectedQuestionId !== null ? state.entities
+    [state.selectedQuestionId] : null
 )
