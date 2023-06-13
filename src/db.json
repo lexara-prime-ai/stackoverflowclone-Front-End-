@@ -111,10 +111,34 @@
   ],
   "questions": [
     {
-      "question": "What is Javascript",
-      "additional_info": "Trying to learn Javascript",
-      "category": "javascript",
-      "id": 1
+      "id": 123,
+      "question": "What is the meaning of life?",
+      "additional_info": "None",
+      "category": "Philosophy"
+    },
+    {
+      "id": 456,
+      "question": "How does photosynthesis work?",
+      "additional_info": "Explore the process in detail.",
+      "category": "Biology"
+    },
+    {
+      "id": 789,
+      "question": "What are the main features of the Python programming language?",
+      "additional_info": "Provide examples if possible.",
+      "category": "Computer Science"
+    },
+    {
+      "id": 101,
+      "question": "Who is the author of \"Pride and Prejudice\"?",
+      "additional_info": "None",
+      "category": "Literature"
+    },
+    {
+      "id": 202,
+      "question": "What are the benefits of regular exercise?",
+      "additional_info": "Include scientific evidence supporting the advantages.",
+      "category": "Health and Fitness"
     }
   ]
 }
