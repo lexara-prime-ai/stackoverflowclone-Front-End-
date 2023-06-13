@@ -21,6 +21,8 @@ import { EffectsModule } from "@ngrx/effects";
 import { userReducer } from "./components/pages/authentication/state/user.reducer";
 import { HttpClientModule } from "@angular/common/http";
 import { UserEffect } from "./components/pages/authentication/state/user.effect";
+import { QuestionEffect } from "./components/pages/QA-panel/state/question.effect";
+import { questionReducer } from "./components/pages/QA-panel/state/question.reducer";
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -51,9 +53,11 @@ import { UserEffect } from "./components/pages/authentication/state/user.effect"
     RouterModule,
     StoreModule.forRoot({}),
     StoreModule.forFeature("users", userReducer),
+    StoreModule.forFeature("questions", questionReducer),
     StoreDevtoolsModule.instrument(),
     EffectsModule.forRoot({}),
     EffectsModule.forFeature(UserEffect),
+    EffectsModule.forFeature(QuestionEffect),
     HttpClientModule
   ],
 })

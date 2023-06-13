@@ -31,6 +31,12 @@ import {
 import { AskQuestionComponent } from "../../pop-ups/questions/ask-question/ask-question.component";
 import { PopUpService } from "src/app/shared/services/pop-up.service";
 import { EditQuestionComponent } from "../../pop-ups/questions/edit-question/edit-question.component";
+import { Observable } from "rxjs";
+import { QUESTION_MODEL } from "src/app/shared/models/question.model";
+import { Store, select } from "@ngrx/store";
+
+import * as fromQuestion from '../QA-panel/state/question.reducer';
+import * as questionActions from '../QA-panel/state/question.actions'
 
 @Component({
     selector: "home",
@@ -42,6 +48,8 @@ import { EditQuestionComponent } from "../../pop-ups/questions/edit-question/edi
 export class QAPanelComponent implements OnInit {
     /* DEFAULT PROPERTIES */
     isActive: boolean = false;
+    questions$!: Observable<QUESTION_MODEL[]>;
+    error$!: Observable<string>;
 
     /* ICONS */
     logo = logo;
@@ -67,10 +75,16 @@ export class QAPanelComponent implements OnInit {
     globeIcon: IconDefinition = faGlobe;
 
     // INJECT MODULAR SERVICES
-    constructor(private popUpService: PopUpService) { }
+    constructor(private popUpService: PopUpService, private store: Store) { }
 
     ngOnInit() {
-        
+        this.displayQuestions();
+        this.error$ = this.store.pipe(select(fromQuestion.getError));
+    }
+
+    displayQuestions() {
+        this.store.dispatch(new questionActions.LoadQuestions());
+        this.questions$ = this.store.pipe(select(fromQuestion.getQuestions));
     }
 
     // CHANGE isActive STATE TO true

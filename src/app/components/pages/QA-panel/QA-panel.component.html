@@ -201,201 +201,23 @@
                 <!-- QUESTIONS -->
                 <div class="questions">
                     <!-- QUESTION CONTENT: Question card & Question controls -->
-                    <div class="question-content">
+                    <div class="question-content" *ngFor="let question of (questions$ | async)">
                         <!-- QUESTION CARD -->
                         <div class="question-card">
                             <!-- QUESTION -->
                             <h3 class="question">
-                                How can I troubleshoot a "NullPointerException" error in my Java code?
+                               {{question.question}}
                             </h3>
                             <!-- CATEGORIES -->
                             <div class="categories">
                                 <!-- CATEGORY -->
                                 <p class="category">
-                                    Debugging
+                                    {{question.category}}
                                 </p>
 
                                 <!-- CATEGORY -->
                                 <p class="category">
-                                    Java
-                                </p>
-                            </div>
-
-                            <!-- POST INFO -->
-                            <div class="post-info">
-                                <fa-icon class="card-icon" [icon]="penIcon"
-                                    (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
-                                <h4 class="info">
-                                    modified 1 min ago
-                                    <span>
-                                        funny_numbers_assoc.
-                                    </span>
-                                </h4>
-                            </div>
-                        </div>
-
-                        <!-- QUESTION CONTROLS
-                         -->
-                        <div class="question-controls">
-                            <!-- CONTROL -->
-                            <div class="control">
-                                <!-- CONTROL COUNT -->
-                                <h2 class="control-count">
-                                    0
-                                </h2>
-                                <!-- CONTROL NAME -->
-                                <p class="control-name">
-                                    votes
-                                </p>
-                                <!-- CONTROL ICON -->
-                                <a class="control-icon">
-                                    <fa-icon [icon]="thumbsUpIcon"></fa-icon>
-                                </a>
-                            </div>
-                            <!-- CONTROL END -->
-                            <!-- CONTROL -->
-                            <div class="control">
-                                <!-- CONTROL COUNT -->
-                                <h2 class="control-count">
-                                    2
-                                </h2>
-                                <!-- CONTROL NAME -->
-                                <p class="control-name">
-                                    answers
-                                </p>
-                                <!-- CONTROL ICON -->
-                                <a class="control-icon">
-                                    <fa-icon [icon]="inboxIcon"></fa-icon>
-                                </a>
-                            </div>
-                            <!-- CONTROL END -->
-                            <!-- CONTROL -->
-                            <div class="control">
-                                <!-- CONTROL COUNT -->
-                                <h2 class="control-count">
-                                    7
-                                </h2>
-                                <!-- CONTROL NAME -->
-                                <p class="control-name">
-                                    views
-                                </p>
-                                <!-- CONTROL ICON -->
-                                <a class="control-icon">
-                                    <fa-icon [icon]="eyeIcon"></fa-icon>
-                                </a>
-                            </div>
-                            <!-- CONTROL END -->
-                        </div>
-                    </div>
-                    <!-- END -->
-
-                    <!-- QUESTION CONTENT: Question card & Question controls -->
-                    <div class="question-content">
-                        <!-- QUESTION CARD -->
-                        <div class="question-card">
-                            <!-- QUESTION -->
-                            <h3 class="question">
-                                How can I troubleshoot a "NullPointerException" error in my Java code?
-                            </h3>
-                            <!-- CATEGORIES -->
-                            <div class="categories">
-                                <!-- CATEGORY -->
-                                <p class="category">
-                                    Debugging
-                                </p>
-
-                                <!-- CATEGORY -->
-                                <p class="category">
-                                    Java
-                                </p>
-                            </div>
-
-                            <!-- POST INFO -->
-                            <div class="post-info">
-                                <fa-icon class="card-icon" [icon]="penIcon"
-                                    (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
-                                <h4 class="info">
-                                    modified 1 min ago
-                                    <span>
-                                        funny_numbers_assoc.
-                                    </span>
-                                </h4>
-                            </div>
-                        </div>
-
-                        <!-- QUESTION CONTROLS
-                         -->
-                        <div class="question-controls">
-                            <!-- CONTROL -->
-                            <div class="control">
-                                <!-- CONTROL COUNT -->
-                                <h2 class="control-count">
-                                    0
-                                </h2>
-                                <!-- CONTROL NAME -->
-                                <p class="control-name">
-                                    votes
-                                </p>
-                                <!-- CONTROL ICON -->
-                                <a class="control-icon">
-                                    <fa-icon [icon]="thumbsUpIcon"></fa-icon>
-                                </a>
-                            </div>
-                            <!-- CONTROL END -->
-                            <!-- CONTROL -->
-                            <div class="control">
-                                <!-- CONTROL COUNT -->
-                                <h2 class="control-count">
-                                    2
-                                </h2>
-                                <!-- CONTROL NAME -->
-                                <p class="control-name">
-                                    answers
-                                </p>
-                                <!-- CONTROL ICON -->
-                                <a class="control-icon">
-                                    <fa-icon [icon]="inboxIcon"></fa-icon>
-                                </a>
-                            </div>
-                            <!-- CONTROL END -->
-                            <!-- CONTROL -->
-                            <div class="control">
-                                <!-- CONTROL COUNT -->
-                                <h2 class="control-count">
-                                    7
-                                </h2>
-                                <!-- CONTROL NAME -->
-                                <p class="control-name">
-                                    views
-                                </p>
-                                <!-- CONTROL ICON -->
-                                <a class="control-icon">
-                                    <fa-icon [icon]="eyeIcon"></fa-icon>
-                                </a>
-                            </div>
-                            <!-- CONTROL END -->
-                        </div>
-                    </div>
-                    <!-- END -->
-
-                    <!-- QUESTION CONTENT: Question card & Question controls -->
-                    <div class="question-content">
-                        <!-- QUESTION CARD -->
-                        <div class="question-card">
-                            <!-- QUESTION -->
-                            <h3 class="question">
-                                How can I troubleshoot a "NullPointerException" error in my Java code?
-                            </h3>
-                            <!-- CATEGORIES -->
-                            <div class="categories">
-                                <!-- CATEGORY -->
-                                <p class="category">
-                                    Debugging
-                                </p>
-
-                                <!-- CATEGORY -->
-                                <p class="category">
-                                    Java
+                                    {{question.category}}
                                 </p>
                             </div>
 
