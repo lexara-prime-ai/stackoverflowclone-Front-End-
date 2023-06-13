@@ -112,33 +112,33 @@
   "questions": [
     {
       "id": 123,
-      "question": "What is the meaning of life?",
-      "additional_info": "None",
-      "category": "Philosophy"
+      "question": "What is object-oriented programming?",
+      "additional_info": "Explain the key principles and benefits.",
+      "category": "Programming Concepts"
     },
     {
       "id": 456,
-      "question": "How does photosynthesis work?",
-      "additional_info": "Explore the process in detail.",
-      "category": "Biology"
+      "question": "What is the difference between compile-time and runtime?",
+      "additional_info": "Provide examples to illustrate the distinction.",
+      "category": "Fundamentals"
     },
     {
       "id": 789,
-      "question": "What are the main features of the Python programming language?",
-      "additional_info": "Provide examples if possible.",
-      "category": "Computer Science"
+      "question": "What are the advantages of using version control systems?",
+      "additional_info": "Discuss popular version control tools and their benefits.",
+      "category": "Software Development"
     },
     {
       "id": 101,
-      "question": "Who is the author of \"Pride and Prejudice\"?",
-      "additional_info": "None",
-      "category": "Literature"
+      "question": "How can you handle exceptions in Python?",
+      "additional_info": "Explain try-except blocks and exception handling mechanisms.",
+      "category": "Python"
     },
     {
       "id": 202,
-      "question": "What are the benefits of regular exercise?",
-      "additional_info": "Include scientific evidence supporting the advantages.",
-      "category": "Health and Fitness"
+      "question": "What is the purpose of a constructor in object-oriented programming?",
+      "additional_info": "Discuss its role in initializing objects and provide an example.",
+      "category": "OOP"
     }
   ]
 }
