@@ -18,15 +18,15 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import {
   IconDefinition,
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
 
-import * as userActions from '../state/user.actions';
-import * as fromUser from '../state/user.reducer';
+import * as userActions from "../state/user.actions";
+import * as fromUser from "../state/user.reducer";
 import { Store } from "@ngrx/store";
 import { UserService } from "src/app/shared/services/users.service";
 
@@ -45,13 +45,24 @@ export class SignUpComponent implements OnInit {
   DEFAULT_FORM_DATA = DEFAULT_FORM_DATA;
   SIGN_UP_FORM!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private store: Store<fromUser.AppState>) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private userService: UserService,
+    private store: Store<fromUser.AppState>
+  ) { }
 
   ngOnInit(): void {
     this.SIGN_UP_FORM = this.formBuilder.group({
       displayName: ["", [Validators.required]],
-      email: ["", [Validators.required, this.userService.EMAIL_PATTERN_VALIDATOR()]],
-      password: ["", [Validators.required, this.userService.PASSWORD_PATTERN_VALIDATOR()]],
+      email: [
+        "",
+        [Validators.required, this.userService.EMAIL_PATTERN_VALIDATOR()],
+      ],
+      password: [
+        "",
+        [Validators.required, this.userService.PASSWORD_PATTERN_VALIDATOR()],
+      ],
     });
   }
 
@@ -60,13 +71,17 @@ export class SignUpComponent implements OnInit {
     const newUser: any = {
       displayName: this.SIGN_UP_FORM.get("displayName")?.value,
       email: this.SIGN_UP_FORM.get("email")?.value,
-      password: this.SIGN_UP_FORM.get("password")?.value
+      password: this.SIGN_UP_FORM.get("password")?.value,
     };
 
     this.store.dispatch(new userActions.CreateUser(newUser));
 
-    // RESET FORM HERE
+    // RESET FORM
+    this.SIGN_UP_FORM.reset();
 
     // REDIRECT TO QA PANEL
+    setTimeout(() => {
+      this.router.navigate(["questions"]);
+    }, 2000);
   }
 }

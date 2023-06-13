@@ -5,6 +5,9 @@
 <div class="main-wrapper">
     <!-- HERO CONTENT -->
     <div class="hero-content">
+        <h2 class="hero-text">
+            We knew you'd be back...
+        </h2>
         <!-- IMAGE -->
         <img src="{{heroImage}}" alt="hero image" class="hero-image" />
     </div>
@@ -69,11 +72,11 @@
 
             <!-- BUTTONS -->
             <div class="button-wrapper">
-                <button class="sign-in-btn btn">
+                <button class="sign-in-btn btn" (click)="SIGN_IN_USER()">
                     Sign In
                 </button>
 
-                <button class="reset-btn btn">
+                <button class="reset-btn btn" [routerLink]="['/reset']">
                     Reset password
                 </button>
             </div>

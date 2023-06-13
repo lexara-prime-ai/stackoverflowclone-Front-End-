@@ -198,6 +198,10 @@ header .logo-icon:hover {
     background: var(--blue);
 }
 
+.sign-up-btn:hover {
+    background: var(--dark-blue);
+}
+
 .sign-in-btn {
     background: var(--amber);
 }

@@ -29,6 +29,17 @@ export class UserService {
         return this.HTTP.post<USER_MODEL>(this.BASE_URL + '/users', payload);
     }
 
+    /* UPDATE USER */
+    updateUser(user: USER_MODEL): Observable<USER_MODEL> {
+        return this.HTTP.patch<USER_MODEL>(`${this.BASE_URL}/users/${user.id}`,
+            user
+        );
+    }
+
+    /* DELETE USER */
+    deleteUser(payload: number) {
+        return this.HTTP.delete(`${this.BASE_URL}/users/${payload}`);
+    }
 
 
 

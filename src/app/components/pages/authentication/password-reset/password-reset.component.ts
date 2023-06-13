@@ -18,7 +18,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { Router, RouterModule } from "@angular/router";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import {
   IconDefinition,
@@ -41,7 +41,7 @@ export class PasswordResetComponent implements OnInit {
   DEFAULT_FORM_DATA = DEFAULT_FORM_DATA;
   PASSWORD_RESET_FORM!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private formBuilder: FormBuilder, private router: Router) { }
 
   ngOnInit(): void {
     this.PASSWORD_RESET_FORM = this.formBuilder.group({
@@ -52,5 +52,9 @@ export class PasswordResetComponent implements OnInit {
 
   RESET_PASSWORD() {
     alert("Password reset successful!");
+    // REDIRECT USER TO SIGN IN PAGE AFTER 2s
+    setTimeout(() => {
+      this.router.navigate(['sign-in']);
+    }, 2000)
   }
 }

@@ -677,3 +677,144 @@
         transform: translateY(-3px);
     }
 }
+
+/* MEDIA QUERIES */
+@media (max-width: 1024px) {
+    .side-navigation {
+        height: auto;
+    }
+
+    .link-item {
+        padding-right: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        display: block;
+    }
+
+    .side-navigation {
+        display: none;
+        height: 200vh;
+    }
+
+    #search-box {
+        width: 300px;
+    }
+
+    .avatar {
+        width: 20%;
+    }
+
+    .wrapper {
+        display: block;
+    }
+
+    .additional-content {
+        display: none;
+    }
+}
+
+@media (max-width: 425px) {
+    .container {
+        display: block;
+    }
+
+    .navbar {
+        display: flex;
+        gap: 6rem;
+        justify-content: space-between;
+    }
+
+    .avatar {
+        width: 45%;
+    }
+    
+    .question-controls {
+        display: none;
+    }
+
+    #search-box {
+        display: none;
+    }
+
+    .context-info {
+        flex-direction: column;
+    }
+
+    .question-card {
+        width: 100%;
+    }
+}
+
+
+@media (max-width: 376px) {
+    .container {
+        display: block;
+    }
+
+    .navbar {
+        display: flex;
+        gap: 8rem;
+        justify-content: space-between;
+    }
+
+    .tour {
+        display: none;
+    }
+
+    .avatar {
+        width: 45%;
+    }
+    .question-controls {
+        display: none;
+    }
+
+    #search-box {
+        display: none;
+    }
+
+    .context-info {
+        flex-direction: column;
+    }
+
+    .question-card {
+        width: 100%;
+    }
+}
+
+@media (max-width: 320px) {
+    .container {
+        display: block;
+    }
+
+    .navbar {
+        display: flex;
+        gap: 5rem;
+        justify-content: space-between;
+    }
+
+    .tour {
+        display: none;
+    }
+
+    .avatar {
+        width: 45%;
+    }
+    .question-controls {
+        display: none;
+    }
+
+    #search-box {
+        display: none;
+    }
+
+    .context-info {
+        flex-direction: column;
+    }
+
+    .question-card {
+        width: 100%;
+    }
+}

@@ -296,8 +296,6 @@
 
 
 /* MEDIA QUERIES */
-@media (max-width: 768px) {}
-
 @media (max-width: 425px) {
     .form-container {
         padding: 2rem;
@@ -306,10 +304,60 @@
     .form {
         width: 20rem;
     }
+
+    .sticky {
+        right: 5%;
+    }
+
+    .form .form-header .form-title {
+        font-size: .9rem;
+    }
+
+    .form .user-input-wrapper .floating-label {
+        font-size: .9rem;
+        top: 18px;
+    }
+
+    .btn {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 376px) {
+    .sticky {
+        right: 5%;
+    }
+
+    .form .user-input-wrapper .floating-label {
+        font-size: .9rem;
+        top: 18px;
+    }
+
+    .btn {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 320px) {
+    .sticky {
+        right: 4%;
+    }
+
     .form {
         width: 18rem;
+    }
+
+    .form .user-input-wrapper .floating-label {
+        font-size: .8rem;
+        top: 18px;
+    }
+
+    .error-message p {
+        word-wrap: normal;
+        font-size: .7rem;
+    }
+
+    .btn {
+        font-size: 1rem;
     }
 }

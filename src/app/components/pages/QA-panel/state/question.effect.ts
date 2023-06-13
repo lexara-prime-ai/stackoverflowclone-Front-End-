@@ -7,8 +7,8 @@ import { Observable, of } from "rxjs";
 import { map, mergeMap, catchError } from "rxjs/operators";
 
 import { UserService } from "src/app/shared/services/users.service";
-import * as userActions from "./user.actions";
-import { USER_MODEL } from "src/app/shared/models/user.model";
+import * as userActions from "./question.actions";
+import { QUESTION_MODEL } from "src/app/shared/models/question.model";
 
 @Injectable()
 export class UserEffect {
@@ -20,7 +20,7 @@ export class UserEffect {
       ofType<userActions.LoadUsers>(userActions.UserActionTypes.LOAD_USERS),
       mergeMap((actions: userActions.LoadUsers) =>
         this.userService.getUsers().pipe(
-          map((users: USER_MODEL[]) => new userActions.LoadUsersSuccess(users)),
+          map((users: QUESTION_MODEL[]) => new userActions.LoadUsersSuccess(users)),
           catchError((err) => of(new userActions.LoadUsersFail(err)))
         )
       )
@@ -33,7 +33,7 @@ export class UserEffect {
       ofType<userActions.LoadUser>(userActions.UserActionTypes.LOAD_USER),
       mergeMap((action: userActions.LoadUser) =>
         this.userService.getUserById(action.payload).pipe(
-          map((user: USER_MODEL) => new userActions.LoadUserSuccess(user)),
+          map((user: QUESTION_MODEL) => new userActions.LoadUserSuccess(user)),
           catchError((err) => of(new userActions.LoadUserFail(err)))
         )
       )
@@ -45,10 +45,10 @@ export class UserEffect {
     this.actions$.pipe(
       ofType<userActions.CreateUser>(userActions.UserActionTypes.CREATE_USER),
       map((action: userActions.CreateUser) => action.payload),
-      mergeMap((user: USER_MODEL) =>
+      mergeMap((user: QUESTION_MODEL) =>
         this.userService.createUser(user).pipe(
           map(
-            (newUser: USER_MODEL) => new userActions.CreateUserSuccess(newUser)
+            (newUser: QUESTION_MODEL) => new userActions.CreateUserSuccess(newUser)
           ),
           catchError((err) => of(new userActions.CreateUserFail(err)))
         )
@@ -61,10 +61,10 @@ export class UserEffect {
     this.actions$.pipe(
       ofType<userActions.UpdateUser>(userActions.UserActionTypes.UPDATE_USER),
       map((action: userActions.UpdateUser) => action.payload),
-      mergeMap((user: USER_MODEL) =>
+      mergeMap((user: QUESTION_MODEL) =>
         this.userService.updateUser(user).pipe(
           map(
-            (updateUser: USER_MODEL) =>
+            (updateUser: QUESTION_MODEL) =>
               new userActions.UpdateUserSuccess({
                 id: updateUser.id,
                 changes: updateUser,

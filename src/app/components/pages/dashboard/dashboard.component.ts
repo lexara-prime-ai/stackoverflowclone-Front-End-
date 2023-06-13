@@ -34,9 +34,10 @@ import { Store, select } from "@ngrx/store";
 
 import * as fromUser from '../authentication/state/user.reducer';
 import * as userActions from '../authentication/state/user.actions';
+import { PageReloaderService } from "src/app/shared/services/page-reloader.service";
 
 @Component({
-    selector: "home",
+    selector: "dashboard",
     templateUrl: "dashboard.component.html",
     styleUrls: ["dashboard.component.css"],
     standalone: true,
@@ -69,15 +70,27 @@ export class AdminDashboardComponent implements OnInit {
     trashIcon: IconDefinition = faTrash;
 
     // INJECT MODULAR SERVICES
-    constructor(private popUpService: PopUpService, private store: Store<fromUser.AppState>) { }
+    constructor(private popUpService: PopUpService, private pageReloaderService: PageReloaderService, private store: Store<fromUser.AppState>) { }
 
     ngOnInit() {
         this.displayUsers();
         this.error$ = this.store.pipe(select(fromUser.getError));
     }
 
+    // DISPLAY ALL USERS
     displayUsers() {
         this.store.dispatch(new userActions.LoadUsers());
         this.users$ = this.store.pipe(select(fromUser.getUsers));
+    }
+
+    // DELETE USER
+    deleteUser(user: USER_MODEL) {
+        if (confirm("Are you sure you want to delete the user?")) {
+            this.store.dispatch(new userActions.DeleteUser(user.id));
+            /* RELOAD CURRENT ROUTE AFTER 2s */
+            setTimeout(() => {
+                this.pageReloaderService.REFRESH_ROUTE();
+            }, 200)
+        }
     }
 }
