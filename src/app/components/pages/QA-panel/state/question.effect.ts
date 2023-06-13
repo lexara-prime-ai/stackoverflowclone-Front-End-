@@ -33,7 +33,7 @@ export class QuestionEffect {
       ofType<questionActions.LoadQuestion>(questionActions.QuestionActionTypes.LOAD_QUESTION),
       mergeMap((action: questionActions.LoadQuestion) =>
         this.questionService.getQuestionById(action.payload).pipe(
-          map((user: QUESTION_MODEL) => new questionActions.LoadQuestionSuccess(user)),
+          map((question: QUESTION_MODEL) => new questionActions.LoadQuestionSuccess(question)),
           catchError((err) => of(new questionActions.LoadQuestionFail(err)))
         )
       )
@@ -45,8 +45,8 @@ export class QuestionEffect {
     this.actions$.pipe(
       ofType<questionActions.AddQuestion>(questionActions.QuestionActionTypes.ADD_QUESTION),
       map((action: questionActions.AddQuestion) => action.payload),
-      mergeMap((user: QUESTION_MODEL) =>
-        this.questionService.addQuestion(user).pipe(
+      mergeMap((question: QUESTION_MODEL) =>
+        this.questionService.addQuestion(question).pipe(
           map(
             (newQuestion: QUESTION_MODEL) => new questionActions.AddQuestionSuccess(newQuestion)
           ),
