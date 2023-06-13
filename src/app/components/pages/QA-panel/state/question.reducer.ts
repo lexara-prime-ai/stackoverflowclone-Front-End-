@@ -87,7 +87,7 @@ export function questionReducer(
 
 /* FEATURE SELECTORS */
 const getQuestionFeatureState = createFeatureSelector<QuestionState>(
-    "users"
+    "questions"
 );
 
 export const getQuestions = createSelector(
