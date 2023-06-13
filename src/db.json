@@ -25,6 +25,12 @@
       "id": 4
     },
     {
+      "displayName": "dom_di_pierro",
+      "email": "dom_di_pierro@fbi.gov",
+      "password": "darkArmy2023",
+      "id": 5
+    },
+    {
       "displayName": "mr_robot",
       "email": "mr_robot@fsociety.com",
       "password": "revolution4ever",
@@ -101,6 +107,14 @@
       "email": "new_user@gmail.com",
       "password": "newpassword",
       "id": 21
+    }
+  ],
+  "questions": [
+    {
+      "question": "What is Javascript",
+      "additional_info": "Trying to learn Javascript",
+      "category": "javascript",
+      "id": 1
     }
   ]
 }

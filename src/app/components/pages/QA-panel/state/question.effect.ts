@@ -6,85 +6,85 @@ import { Action } from "@ngrx/store";
 import { Observable, of } from "rxjs";
 import { map, mergeMap, catchError } from "rxjs/operators";
 
-import { UserService } from "src/app/shared/services/users.service";
-import * as userActions from "./question.actions";
+import * as questionActions from "./question.actions";
 import { QUESTION_MODEL } from "src/app/shared/models/question.model";
+import { QuestionService } from "src/app/shared/services/questions.service";
 
 @Injectable()
 export class UserEffect {
-  constructor(private actions$: Actions, private userService: UserService) {}
+  constructor(private actions$: Actions, private questionService: QuestionService) { }
 
   /* GET ALL USERS */
-  loadUsers$: Observable<Action> = createEffect(() =>
+  loadQuestions$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
-      ofType<userActions.LoadUsers>(userActions.UserActionTypes.LOAD_USERS),
-      mergeMap((actions: userActions.LoadUsers) =>
-        this.userService.getUsers().pipe(
-          map((users: QUESTION_MODEL[]) => new userActions.LoadUsersSuccess(users)),
-          catchError((err) => of(new userActions.LoadUsersFail(err)))
+      ofType<questionActions.LoadQuestions>(questionActions.QuestionActionTypes.LOAD_QUESTIONS),
+      mergeMap((actions: questionActions.LoadQuestions) =>
+        this.questionService.getQuestions().pipe(
+          map((questions: QUESTION_MODEL[]) => new questionActions.LoadQuestionsSuccess(questions)),
+          catchError((err) => of(new questionActions.LoadQuestionsFail(err)))
         )
       )
     )
   );
 
   /* GET SINGLE USER */
-  loadUser$: Observable<Action> = createEffect(() =>
+  loadQuestion$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
-      ofType<userActions.LoadUser>(userActions.UserActionTypes.LOAD_USER),
-      mergeMap((action: userActions.LoadUser) =>
-        this.userService.getUserById(action.payload).pipe(
-          map((user: QUESTION_MODEL) => new userActions.LoadUserSuccess(user)),
-          catchError((err) => of(new userActions.LoadUserFail(err)))
+      ofType<questionActions.LoadQuestion>(questionActions.QuestionActionTypes.LOAD_QUESTION),
+      mergeMap((action: questionActions.LoadQuestion) =>
+        this.questionService.getQuestionById(action.payload).pipe(
+          map((user: QUESTION_MODEL) => new questionActions.LoadQuestionSuccess(user)),
+          catchError((err) => of(new questionActions.LoadQuestionFail(err)))
         )
       )
     )
   );
 
   /* CREATE USER */
-  createUser$: Observable<Action> = createEffect(() =>
+  addQuestion$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
-      ofType<userActions.CreateUser>(userActions.UserActionTypes.CREATE_USER),
-      map((action: userActions.CreateUser) => action.payload),
+      ofType<questionActions.AddQuestion>(questionActions.QuestionActionTypes.ADD_QUESTION),
+      map((action: questionActions.AddQuestion) => action.payload),
       mergeMap((user: QUESTION_MODEL) =>
-        this.userService.createUser(user).pipe(
+        this.questionService.addQuestion(user).pipe(
           map(
-            (newUser: QUESTION_MODEL) => new userActions.CreateUserSuccess(newUser)
+            (newQuestion: QUESTION_MODEL) => new questionActions.AddQuestionSuccess(newQuestion)
           ),
-          catchError((err) => of(new userActions.CreateUserFail(err)))
+          catchError((err) => of(new questionActions.AddQuestionFail(err)))
         )
       )
     )
   );
 
   /* UPDATE USER */
-  updateUser$: Observable<Action> = createEffect(() =>
+  updateQuestion$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
-      ofType<userActions.UpdateUser>(userActions.UserActionTypes.UPDATE_USER),
-      map((action: userActions.UpdateUser) => action.payload),
-      mergeMap((user: QUESTION_MODEL) =>
-        this.userService.updateUser(user).pipe(
+      ofType<questionActions.UpdateQuestion>(questionActions.QuestionActionTypes.UPDATE_QUESTION),
+      map((action: questionActions.UpdateQuestion) => action.payload),
+      mergeMap((question: QUESTION_MODEL) =>
+        this.questionService.updateQuestion(question).pipe(
           map(
-            (updateUser: QUESTION_MODEL) =>
-              new userActions.UpdateUserSuccess({
-                id: updateUser.id,
-                changes: updateUser,
+            (updateQuestion: QUESTION_MODEL) =>
+              new questionActions.UpdateQuestionSuccess({
+                id: updateQuestion.id,
+                changes: updateQuestion,
               })
           ),
-          catchError((err) => of(new userActions.UpdateUserFail(err)))
+          catchError((err) => of(new questionActions.UpdateQuestionFail(err)))
         )
       )
     )
   );
 
   /* DELETE USER */
-  deleteUser$: Observable<Action> = createEffect(() =>
+  deleteQuestion$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
-      ofType<userActions.DeleteUser>(userActions.UserActionTypes.DELETE_USER),
-      map((action: userActions.DeleteUser) => action.payload),
+      ofType<questionActions.DeleteQuestion>(questionActions.QuestionActionTypes.DELETE_QUESTION),
+      map((action: questionActions.DeleteQuestion) => action.payload),
       mergeMap((id: number) =>
-        this.userService.deleteUser(id).pipe(
-          map(() => new userActions.DeleteUserSuccess(id)),
-          catchError((err) => of(new userActions.DeleteUserFail(err)))
+        this.questionService.deleteQuestion(id).pipe(
+          map(() => new questionActions.DeleteQuestionSuccess(id)),
+          catchError((err) => of(new questionActions.DeleteQuestionFail(err)))
         )
       )
     )
