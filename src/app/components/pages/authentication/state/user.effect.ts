@@ -66,7 +66,7 @@ export class UserEffect {
           map(
             (updateUser: USER_MODEL) =>
               new userActions.UpdateUserSuccess({
-                id: updateUser.id,
+                id: updateUser.user_id,
                 changes: updateUser,
               })
           ),

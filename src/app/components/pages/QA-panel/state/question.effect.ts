@@ -66,7 +66,7 @@ export class QuestionEffect {
           map(
             (updateQuestion: QUESTION_MODEL) =>
               new questionActions.UpdateQuestionSuccess({
-                id: updateQuestion.id,
+                id: updateQuestion.question_id,
                 changes: updateQuestion,
               })
           ),

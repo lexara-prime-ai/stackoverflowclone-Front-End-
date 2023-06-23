@@ -8,7 +8,7 @@ import { QUESTION_MODEL } from '../models/question.model'
 })
 export class QuestionService {
     /* BASE URL */
-    private BASE_URL = `http://localhost:3000`;
+    private BASE_URL = `http://localhost:8000`;
 
     constructor(private HTTP: HttpClient) { }
 
@@ -30,7 +30,7 @@ export class QuestionService {
 
     /* UPDATE QUESTION */
     updateQuestion(question: QUESTION_MODEL): Observable<QUESTION_MODEL> {
-        return this.HTTP.patch<QUESTION_MODEL>(`${this.BASE_URL}/questions/${question.id}`,
+        return this.HTTP.patch<QUESTION_MODEL>(`${this.BASE_URL}/questions/${question.question_id}`,
             question
         );
     }

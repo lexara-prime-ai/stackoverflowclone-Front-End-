@@ -18,13 +18,13 @@
             <div class="input-wrapper">
                 <div class="user-input-wrapper">
                     <!-- DISPLAY NAME INPUT -->
-                    <input type="text" class="input-text input" formControlName="displayName" required />
+                    <input type="text" class="input-text input" formControlName="display_name" required />
                     <span class="floating-label">
-                        {{ DEFAULT_FORM_DATA.displayName }}
+                        {{ DEFAULT_FORM_DATA.display_name }}
                     </span>
 
                     <!-- ERROR MESSAGE -->
-                    <div *ngIf="SIGN_UP_FORM.controls['displayName'].invalid && (SIGN_UP_FORM.controls['displayName'].dirty || SIGN_UP_FORM.controls['displayName'].touched)"
+                    <div *ngIf="SIGN_UP_FORM.controls['display_name'].invalid && (SIGN_UP_FORM.controls['display_name'].dirty || SIGN_UP_FORM.controls['display_name'].touched)"
                         class="error-message">
                         <p>
                             <fa-icon [icon]="warningIcon"></fa-icon>

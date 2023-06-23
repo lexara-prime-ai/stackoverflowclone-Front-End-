@@ -87,6 +87,14 @@ export class QAPanelComponent implements OnInit {
         this.questions$ = this.store.pipe(select(fromQuestion.getQuestions));
     }
 
+    // FORMAT SQL DATE OBJECT
+    formatDate(dateStr: string): string {
+        const date = new Date();
+        const options: Intl.DateTimeFormatOptions = { month: "long", day: "numeric", year: "numeric" };
+
+        return date.toLocaleDateString("en-US", options);
+    }
+
     // CHANGE isActive STATE TO true
     alter_ASK_QUESTION_FORM_state(): void {
         // EMITS A BOOLEAN VALUE, true

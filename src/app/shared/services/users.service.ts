@@ -9,7 +9,7 @@ import { USER_MODEL } from '../models/user.model'
 })
 export class UserService {
     /* BASE URL */
-    private BASE_URL = `http://localhost:3000`;
+    private BASE_URL = `http://localhost:8000`;
 
     constructor(private HTTP: HttpClient) { }
 
@@ -31,7 +31,7 @@ export class UserService {
 
     /* UPDATE USER */
     updateUser(user: USER_MODEL): Observable<USER_MODEL> {
-        return this.HTTP.patch<USER_MODEL>(`${this.BASE_URL}/users/${user.id}`,
+        return this.HTTP.patch<USER_MODEL>(`${this.BASE_URL}/users/${user.user_id}`,
             user
         );
     }

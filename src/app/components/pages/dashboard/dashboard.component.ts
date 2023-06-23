@@ -86,7 +86,7 @@ export class AdminDashboardComponent implements OnInit {
     // DELETE USER
     deleteUser(user: USER_MODEL) {
         if (confirm("Are you sure you want to delete the user?")) {
-            this.store.dispatch(new userActions.DeleteUser(user.id));
+            this.store.dispatch(new userActions.DeleteUser(user.user_id));
             /* RELOAD CURRENT ROUTE AFTER 2s */
             setTimeout(() => {
                 this.pageReloaderService.REFRESH_ROUTE();

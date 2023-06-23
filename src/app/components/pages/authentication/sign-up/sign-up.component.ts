@@ -4,7 +4,7 @@ const logoBanner = "../../../assets/logos/web/png/logo_colored.png" as string;
 
 // DEFAULT FORM DATA
 const DEFAULT_FORM_DATA = {
-  displayName: "Display name..." as string,
+  display_name: "Display name..." as string,
   email: "Email" as string,
   password: "Password" as string,
 };
@@ -54,7 +54,7 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit(): void {
     this.SIGN_UP_FORM = this.formBuilder.group({
-      displayName: ["", [Validators.required]],
+      display_name: ["", [Validators.required]],
       email: [
         "",
         [Validators.required, this.userService.EMAIL_PATTERN_VALIDATOR()],
@@ -69,7 +69,7 @@ export class SignUpComponent implements OnInit {
   /* CREATE USER */
   createUser() {
     const newUser: any = {
-      displayName: this.SIGN_UP_FORM.get("displayName")?.value,
+      display_name: this.SIGN_UP_FORM.get("display_name")?.value,
       email: this.SIGN_UP_FORM.get("email")?.value,
       password: this.SIGN_UP_FORM.get("password")?.value,
     };

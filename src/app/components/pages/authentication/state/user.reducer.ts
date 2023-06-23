@@ -19,7 +19,9 @@ export interface AppState extends fromRoot.AppState {
     users: UserState
 }
 
-export const userAdapter: EntityAdapter<USER_MODEL> = createEntityAdapter<USER_MODEL>();
+export const userAdapter: EntityAdapter<USER_MODEL> = createEntityAdapter<USER_MODEL>({
+    selectId: (e) => e.user_id
+});
 
 export const defaultUser: UserState = {
     ids: [],
@@ -59,7 +61,7 @@ export function userReducer(
         case userActions.UserActionTypes.LOAD_USER_SUCCESS: {
             return userAdapter.addOne(action.payload, {
                 ...state,
-                selectedUserId: action.payload.id
+                selectedUserId: action.payload.user_id
             })
         }
         case userActions.UserActionTypes.LOAD_USER_FAIL: {

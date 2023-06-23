@@ -19,7 +19,9 @@ export interface AppState extends fromRoot.AppState {
     questions: QuestionState
 }
 
-export const questionAdapter: EntityAdapter<QUESTION_MODEL> = createEntityAdapter<QUESTION_MODEL>();
+export const questionAdapter: EntityAdapter<QUESTION_MODEL> = createEntityAdapter<QUESTION_MODEL>({
+    selectId: (e) => e.question_id
+});
 
 export const defaultQuestion: QuestionState = {
     ids: [],
@@ -59,7 +61,7 @@ export function questionReducer(
         case questionActions.QuestionActionTypes.LOAD_QUESTION_SUCCESS: {
             return questionAdapter.addOne(action.payload, {
                 ...state,
-                selectedQuestionId: action.payload.id
+                selectedQuestionId: action.payload.question_id
             })
         }
         case questionActions.QuestionActionTypes.LOAD_QUESTION_FAIL: {

@@ -200,94 +200,137 @@
 
                 <!-- QUESTIONS -->
                 <div class="questions">
+
                     <!-- QUESTION CONTENT: Question card & Question controls -->
                     <div class="question-content" *ngFor="let question of (questions$ | async)">
-                        <!-- QUESTION CARD -->
-                        <div class="question-card">
-                            <!-- QUESTION -->
-                            <h3 class="question">
-                               {{question.question}}
-                            </h3>
-                            <!-- CATEGORIES -->
-                            <div class="categories">
-                                <!-- CATEGORY -->
-                                <p class="category">
-                                    {{question.category}}
-                                </p>
+                        <div class="question-wrapper">
+                            <!-- QUESTION CARD -->
+                            <div class="question-card">
+                                <!-- QUESTION -->
+                                <h3 class="question">
+                                    {{question.question}}
+                                </h3>
+                                <!-- CATEGORIES -->
+                                <div class="categories">
+                                    <!-- CATEGORY -->
+                                    <p class="category">
+                                        {{question.category}}
+                                    </p>
+                                </div>
 
-                                <!-- CATEGORY -->
-                                <p class="category">
-                                    {{question.category}}
-                                </p>
-                            </div>
+                                <!-- POST INFO -->
+                                <div class="post-info">
+                                    <fa-icon class="card-icon" [icon]="penIcon" (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
+                                    <h4 class="info">
+                                        modified {{formatDate(question.date_created)}} by
+                                        <span>
+                                            {{question.display_name}}
+                                        </span>
+                                    </h4>
+                                </div>
+                                </div>
 
-                            <!-- POST INFO -->
-                            <div class="post-info">
-                                <fa-icon class="card-icon" [icon]="penIcon"
-                                    (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
-                                <h4 class="info">
-                                    modified 1 min ago
-                                    <span>
-                                        funny_numbers_assoc.
-                                    </span>
-                                </h4>
+                            <!-- QUESTION CONTROLS
+                         -->
+                            <div class="question-controls">
+                                <!-- CONTROL -->
+                                <div class="control">
+                                    <!-- CONTROL COUNT -->
+                                    <h2 class="control-count">
+                                        0
+                                    </h2>
+                                    <!-- CONTROL NAME -->
+                                    <p class="control-name">
+                                        votes
+                                    </p>
+                                    <!-- CONTROL ICON -->
+                                    <a class="control-icon">
+                                        <fa-icon [icon]="thumbsUpIcon"></fa-icon>
+                                    </a>
+                                </div>
+                                <!-- CONTROL END -->
+                                <!-- CONTROL -->
+                                <div class="control">
+                                    <!-- CONTROL COUNT -->
+                                    <h2 class="control-count">
+                                        2
+                                    </h2>
+                                    <!-- CONTROL NAME -->
+                                    <p class="control-name">
+                                        answers
+                                    </p>
+                                    <!-- CONTROL ICON -->
+                                    <a class="control-icon">
+                                        <fa-icon [icon]="inboxIcon"></fa-icon>
+                                    </a>
+                                </div>
+                                <!-- CONTROL END -->
+                                <!-- CONTROL -->
+                                <div class="control">
+                                    <!-- CONTROL COUNT -->
+                                    <h2 class="control-count">
+                                        7
+                                    </h2>
+                                    <!-- CONTROL NAME -->
+                                    <p class="control-name">
+                                        views
+                                    </p>
+                                    <!-- CONTROL ICON -->
+                                    <a class="control-icon">
+                                        <fa-icon [icon]="eyeIcon"></fa-icon>
+                                    </a>
+                                </div>
+                                <!-- CONTROL END -->
                             </div>
                         </div>
+                        <!-- ANSWERS -->
+                        <div class="answers">
+                            <!-- ANSWER -->
+                            <div class="answer">
+                                <div class="respondent-profile">
+                                    <!-- AVATAR -->
+                                    <img src="../../../../assets/avatars/user.png" alt="avatar"
+                                        class="respondent-avatar">
 
-                        <!-- QUESTION CONTROLS
-                         -->
-                        <div class="question-controls">
-                            <!-- CONTROL -->
-                            <div class="control">
-                                <!-- CONTROL COUNT -->
-                                <h2 class="control-count">
-                                    0
-                                </h2>
-                                <!-- CONTROL NAME -->
-                                <p class="control-name">
-                                    votes
-                                </p>
-                                <!-- CONTROL ICON -->
-                                <a class="control-icon">
-                                    <fa-icon [icon]="thumbsUpIcon"></fa-icon>
-                                </a>
+                                    <!-- RESPONDENT NAME -->
+                                    <p class="respondent-name">
+                                        jonathan_ndambuki
+                                    </p>
+                                </div>
+                                <!-- RESPONDENT ANSWER -->
+                                <div class="response">
+                                    <p>
+                                        It's a computer programming model that organizes software design around data, or
+                                        objects, rather than functions and logic.
+                                    </p>
+                                </div>
                             </div>
-                            <!-- CONTROL END -->
-                            <!-- CONTROL -->
-                            <div class="control">
-                                <!-- CONTROL COUNT -->
-                                <h2 class="control-count">
-                                    2
-                                </h2>
-                                <!-- CONTROL NAME -->
-                                <p class="control-name">
-                                    answers
-                                </p>
-                                <!-- CONTROL ICON -->
-                                <a class="control-icon">
-                                    <fa-icon [icon]="inboxIcon"></fa-icon>
-                                </a>
+                            <!-- ANSWER END -->
+                            <!-- ANSWER -->
+                            <div class="answer active">
+                                <div class="respondent-profile">
+                                    <!-- AVATAR -->
+                                    <img src="../../../../assets/avatars/user.png" alt="avatar"
+                                        class="respondent-avatar">
+
+                                    <!-- RESPONDENT NAME -->
+                                    <p class="respondent-name">
+                                        jonathan_ndambuki
+                                    </p>
+                                </div>
+                                <!-- RESPONDENT ANSWER -->
+                                <div class="response">
+                                    <p>
+                                        It's a computer programming model that organizes software design around data, or
+                                        objects, rather than functions and logic.
+                                    </p>
+                                </div>
+
                             </div>
-                            <!-- CONTROL END -->
-                            <!-- CONTROL -->
-                            <div class="control">
-                                <!-- CONTROL COUNT -->
-                                <h2 class="control-count">
-                                    7
-                                </h2>
-                                <!-- CONTROL NAME -->
-                                <p class="control-name">
-                                    views
-                                </p>
-                                <!-- CONTROL ICON -->
-                                <a class="control-icon">
-                                    <fa-icon [icon]="eyeIcon"></fa-icon>
-                                </a>
-                            </div>
-                            <!-- CONTROL END -->
                         </div>
                     </div>
                     <!-- END -->
+
                 </div>
             </div>
             <!--====================-->

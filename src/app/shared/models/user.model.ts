@@ -1,7 +1,7 @@
 /* USER MODEL */
 export interface USER_MODEL {
-    id:  number;
-    displayName: string;
+    user_id:  number;
+    display_name: string;
     email: string;
     password: string;
 }

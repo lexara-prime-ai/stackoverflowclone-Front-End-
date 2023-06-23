@@ -262,7 +262,7 @@
 }
 
 .avatar {
-    width: 30%;
+    width: 40%;
     border-radius: 50%;
     -webkit-box-shadow: 0 .5rem .5rem 0 rgba(0, 0, 0, .1);
     box-shadow: 0 .5rem .5rem 0 rgba(0, 0, 0, .1);
@@ -353,12 +353,18 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    flex-direction: column;
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
     gap: 2rem;
     padding: 1.2rem;
     border-bottom: 1.5px solid var(--light-gray);
+}
+
+.question-wrapper {
+    display: flex;
+    align-items: center;
 }
 
 .question-card {
@@ -460,6 +466,50 @@
 
 .card-icon {
     cursor: pointer;
+}
+
+/* STYLING FOR ANSWERS & COMMENTS */
+.answers {
+    background: var(--lighter-gray);
+    border-radius: .3rem;
+    box-shadow: 0 2rem 2rem 0 rgba(0, 0, 0, .2);
+    padding: 1rem;
+    width: 100%;
+}
+
+.answers .answer {
+    padding: 1rem;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    background: var(--white);
+    color: var(--black);
+    border-radius: 4px;
+    font-weight: 700;
+    opacity: .7;
+    transition: .4s all ease;
+    cursor: pointer;
+}
+
+.answers .answer:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+.answers .answer.active {
+    opacity: 1;
+}
+
+.answers .answer .respondent-avatar {
+    width: 4%;
+    border-radius: 50%;
+    box-shadow: 0 .5rem .5rem 0 rgba(0, 0, 0, .1);
+    cursor: pointer;
+}
+
+.answers .answer .respondent-name {
+    font-size: .6rem;
+    font-weight: 600;
+    color: var(--dark-gray);
 }
 
 /* STYLING FOR ADDITIONAL CONTENT */
@@ -687,6 +737,10 @@
     .link-item {
         padding-right: 1.5rem;
     }
+
+    .avatar {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -745,6 +799,14 @@
 
     .question-card {
         width: 100%;
+    }
+
+    .answers .answer .respondent-avatar {
+        width: 10%;
+    }
+
+    .answers .answer .respondent-name {
+        font-size: .8rem;
     }
 }
 
@@ -816,5 +878,9 @@
 
     .question-card {
         width: 100%;
+    }
+
+    .answers .answer .respondent-avatar {
+        width: 15%;
     }
 }
