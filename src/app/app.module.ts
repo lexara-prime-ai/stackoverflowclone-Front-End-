@@ -23,6 +23,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { UserEffect } from "./components/pages/authentication/state/user.effect";
 import { QuestionEffect } from "./components/pages/QA-panel/state/question.effect";
 import { questionReducer } from "./components/pages/QA-panel/state/question.reducer";
+import { MessageBoxComponent } from "./components/message-box/message-box.component";
 
 // THE NgModule DECORATOR INDICATES THAT
 //THIS FILE IS A MODULE
@@ -47,6 +48,7 @@ import { questionReducer } from "./components/pages/QA-panel/state/question.redu
     EditQuestionComponent,
     AdminDashboardComponent,
     UserProfileComponent,
+    MessageBoxComponent,
     FontAwesomeModule,
     AppRoutingModule,
     BrowserModule,

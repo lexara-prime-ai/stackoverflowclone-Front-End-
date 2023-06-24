@@ -328,6 +328,10 @@
         right: 5%;
     }
 
+    .form .form-header .form-title {
+        font-size: .9rem;
+    }
+
     .form .user-input-wrapper .floating-label {
         font-size: .9rem;
         top: 18px;
@@ -345,6 +349,10 @@
 
     .form {
         width: 18rem;
+    }
+
+    .form .form-header .form-title {
+        font-size: .7rem;
     }
 
     .form .user-input-wrapper .floating-label {

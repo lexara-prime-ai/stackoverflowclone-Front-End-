@@ -12,7 +12,9 @@ import {
     faSearch,
     faLifeRing,
     faDesktop,
+    faAngleUp,
     faAngleDown,
+    faCheckCircle,
     faQuestion,
     faBriefcase,
     faFileLines,
@@ -37,18 +39,21 @@ import { Store, select } from "@ngrx/store";
 
 import * as fromQuestion from '../QA-panel/state/question.reducer';
 import * as questionActions from '../QA-panel/state/question.actions'
+import { MessageBoxComponent } from "../../message-box/message-box.component";
+import { MessageBoxService } from "src/app/shared/services/message-box.service";
 
 @Component({
     selector: "home",
     templateUrl: "QA-panel.component.html",
     styleUrls: ["QA-panel.component.css"],
     standalone: true,
-    imports: [CommonModule, RouterModule, FontAwesomeModule, AskQuestionComponent, EditQuestionComponent],
+    imports: [CommonModule, RouterModule, FontAwesomeModule, AskQuestionComponent, EditQuestionComponent, MessageBoxComponent],
 })
 export class QAPanelComponent implements OnInit {
     /* DEFAULT PROPERTIES */
     isActive: boolean = false;
     questions$!: Observable<QUESTION_MODEL[]>;
+    parsedQuestions: QUESTION_MODEL[] = [];
     error$!: Observable<string>;
 
     /* ICONS */
@@ -57,7 +62,9 @@ export class QAPanelComponent implements OnInit {
     searchIcon: IconDefinition = faSearch;
     helpIcon: IconDefinition = faLifeRing;
     desktopIcon: IconDefinition = faDesktop;
+    upIcon: IconDefinition = faAngleUp;
     downIcon: IconDefinition = faAngleDown;
+    checkIcon: IconDefinition = faCheckCircle;
     questionMarkIcon: IconDefinition = faQuestion;
     questionMarkIconAlt: IconDefinition = faQuestionCircle;
     briefCaseIcon: IconDefinition = faBriefcase;
@@ -75,7 +82,7 @@ export class QAPanelComponent implements OnInit {
     globeIcon: IconDefinition = faGlobe;
 
     // INJECT MODULAR SERVICES
-    constructor(private popUpService: PopUpService, private store: Store) { }
+    constructor(private popUpService: PopUpService, private store: Store, private messageBoxService: MessageBoxService) { }
 
     ngOnInit() {
         this.displayQuestions();
@@ -85,13 +92,18 @@ export class QAPanelComponent implements OnInit {
     displayQuestions() {
         this.store.dispatch(new questionActions.LoadQuestions());
         this.questions$ = this.store.pipe(select(fromQuestion.getQuestions));
-    }
+
+        // SHOW WELCOME MESSAGE WHEN
+        if (this.questions$) {
+            this.messageBoxService.SHOW_SUCCESS_MESSAGE("Embrace curiosity, ignite your mind.");
+        }
+    }  
 
     // FORMAT SQL DATE OBJECT
     formatDate(dateStr: string): string {
         const date = new Date();
         const options: Intl.DateTimeFormatOptions = { month: "long", day: "numeric", year: "numeric" };
-
+        // RETURN FORMATTED DATE
         return date.toLocaleDateString("en-US", options);
     }
 

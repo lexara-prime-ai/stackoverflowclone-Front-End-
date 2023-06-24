@@ -49,7 +49,7 @@
                     class="error-message">
                     <p>
                         <fa-icon [icon]="warningIcon"></fa-icon>
-                        Provide any additional information
+                        Provide additional information
                     </p>
                 </div>
             </div>
@@ -76,11 +76,11 @@
         </div>
         <!-- BUTTONS -->
         <div class="button-wrapper">
-            <button class="submit-btn btn">
+            <button class="submit-btn btn" [ngClass]="{ 'disabled': EDIT_QUESTION_FORM.invalid }">
                 Update question
             </button>
 
-            <button class="view-btn btn">
+            <button class="view-btn btn" [ngClass]="{ 'disabled': EDIT_QUESTION_FORM.invalid }">
                 View questions asked
             </button>
         </div>

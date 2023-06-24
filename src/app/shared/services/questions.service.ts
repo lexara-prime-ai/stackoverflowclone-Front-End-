@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { QUESTION_MODEL } from '../models/question.model'
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { QUESTION_MODEL } from "../models/question.model";
 
 @Injectable({
-    providedIn: 'root'
+    providedIn: "root"
 })
 export class QuestionService {
     /* BASE URL */

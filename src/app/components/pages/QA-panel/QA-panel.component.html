@@ -220,15 +220,16 @@
 
                                 <!-- POST INFO -->
                                 <div class="post-info">
-                                    <fa-icon class="card-icon" [icon]="penIcon" (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
+                                    <fa-icon class="card-icon" [icon]="penIcon"
+                                        (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
                                     <h4 class="info">
                                         modified {{formatDate(question.date_created)}} by
                                         <span>
-                                            {{question.display_name}}
+                                            {{question.question_asker}}
                                         </span>
                                     </h4>
                                 </div>
-                                </div>
+                            </div>
 
                             <!-- QUESTION CONTROLS
                          -->
@@ -253,7 +254,7 @@
                                 <div class="control">
                                     <!-- CONTROL COUNT -->
                                     <h2 class="control-count">
-                                        2
+                                        {{question.answers.length}}
                                     </h2>
                                     <!-- CONTROL NAME -->
                                     <p class="control-name">
@@ -269,7 +270,7 @@
                                 <div class="control">
                                     <!-- CONTROL COUNT -->
                                     <h2 class="control-count">
-                                        7
+                                        {{question.answers.length}}
                                     </h2>
                                     <!-- CONTROL NAME -->
                                     <p class="control-name">
@@ -284,49 +285,43 @@
                             </div>
                         </div>
                         <!-- ANSWERS -->
-                        <div class="answers">
+                        <div class="answers" *ngFor="let answer of question.answers">
                             <!-- ANSWER -->
                             <div class="answer">
-                                <div class="respondent-profile">
-                                    <!-- AVATAR -->
-                                    <img src="../../../../assets/avatars/user.png" alt="avatar"
-                                        class="respondent-avatar">
+                                <!-- ANSWER CONTENT -->
+                                <div class="answer-content">
+                                    <!-- RESPONDENT PROFILE -->
+                                    <div class="respondent-profile">
+                                        <!-- AVATAR -->
+                                        <img src="../../../../assets/avatars/user.png" alt="avatar"
+                                            class="respondent-avatar">
 
-                                    <!-- RESPONDENT NAME -->
-                                    <p class="respondent-name">
-                                        jonathan_ndambuki
-                                    </p>
+                                        <!-- RESPONDENT NAME -->
+                                        <p class="respondent-name">
+                                            {{answer.answerer}}
+                                        </p>
+                                    </div>
+                                    <!-- RESPONDENT ANSWER -->
+                                    <div class="response">
+                                        <p>
+                                            {{answer.answer}}
+                                        </p>
+                                    </div>
                                 </div>
-                                <!-- RESPONDENT ANSWER -->
-                                <div class="response">
-                                    <p>
-                                        It's a computer programming model that organizes software design around data, or
-                                        objects, rather than functions and logic.
-                                    </p>
+
+                                <!-- ANSWER ACTIONS -->
+                                <div class="answer-actions">
+                                    <div class="vote-icons">
+                                        <!-- UPVOTE -->
+                                        <fa-icon [icon]="upIcon" class="answer-icon"></fa-icon>
+                                        <!-- DOWNVOTE -->
+                                        <fa-icon [icon]="downIcon" class="answer-icon"></fa-icon>
+                                    </div>
+                                    <!-- MARK AS PREFERRED -->
+                                    <fa-icon [icon]="checkIcon" class="answer-icon"></fa-icon>
                                 </div>
                             </div>
                             <!-- ANSWER END -->
-                            <!-- ANSWER -->
-                            <div class="answer active">
-                                <div class="respondent-profile">
-                                    <!-- AVATAR -->
-                                    <img src="../../../../assets/avatars/user.png" alt="avatar"
-                                        class="respondent-avatar">
-
-                                    <!-- RESPONDENT NAME -->
-                                    <p class="respondent-name">
-                                        jonathan_ndambuki
-                                    </p>
-                                </div>
-                                <!-- RESPONDENT ANSWER -->
-                                <div class="response">
-                                    <p>
-                                        It's a computer programming model that organizes software design around data, or
-                                        objects, rather than functions and logic.
-                                    </p>
-                                </div>
-
-                            </div>
                         </div>
                     </div>
                     <!-- END -->

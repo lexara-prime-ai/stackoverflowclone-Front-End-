@@ -10,6 +10,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from "@angular/forms";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { IconDefinition, faQuestion, faClose, faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { MessageBoxService } from "src/app/shared/services/message-box.service";
 import { PopUpService } from "src/app/shared/services/pop-up.service";
 
 @Component({
@@ -30,7 +31,7 @@ export class AskQuestionComponent implements OnInit {
     questionMarkIcon: IconDefinition = faQuestion;
     warningIcon: IconDefinition = faExclamationTriangle;
 
-    constructor(private formBuilder: FormBuilder, private popUpService: PopUpService) { }
+    constructor(private formBuilder: FormBuilder, private popUpService: PopUpService, private messageBoxService: MessageBoxService) { }
 
     ngOnInit() {
         this.ASK_QUESTION_FORM = this.formBuilder.group({
@@ -46,5 +47,10 @@ export class AskQuestionComponent implements OnInit {
     close_ASK_QUESTION_FORM(): void {
         // EMITS A BOOLEAN VALUE, false
         this.popUpService.closeAskQuestionForm();
+    }
+
+    // SUBMIT QUESTION
+    SUBMIT_QUESTION() {
+        this.messageBoxService.SHOW_SUCCESS_MESSAGE("Question submitted successfully!");
     }
 }

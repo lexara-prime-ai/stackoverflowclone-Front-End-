@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { ValidatorFn, Validators } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { USER_MODEL } from '../models/user.model'
+import { Injectable } from "@angular/core";
+import { ValidatorFn, Validators } from "@angular/forms";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { USER_MODEL } from "../models/user.model";
 
 @Injectable({
     providedIn: 'root'
