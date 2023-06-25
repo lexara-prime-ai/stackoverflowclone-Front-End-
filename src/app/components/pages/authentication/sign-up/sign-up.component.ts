@@ -29,6 +29,7 @@ import * as userActions from "../state/user.actions";
 import * as fromUser from "../state/user.reducer";
 import { Store } from "@ngrx/store";
 import { UserService } from "src/app/shared/services/users.service";
+import { MessageBoxService } from "src/app/shared/services/message-box.service";
 
 @Component({
   selector: "sign-up",
@@ -49,7 +50,8 @@ export class SignUpComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService,
-    private store: Store<fromUser.AppState>
+    private store: Store<fromUser.AppState>,
+    private messageBoxService: MessageBoxService
   ) { }
 
   ngOnInit(): void {
@@ -79,9 +81,16 @@ export class SignUpComponent implements OnInit {
     // RESET FORM
     this.SIGN_UP_FORM.reset();
 
+    // DISPLAY SUCCESS MESSAGE
+    this.messageBoxService.SHOW_SUCCESS_MESSAGE("Signing up...");
+
     // REDIRECT TO QA PANEL
     setTimeout(() => {
       this.router.navigate(["questions"]);
     }, 2000);
+  }
+
+  REDIRECT_TO_SIGN_IN_PAGE(): void {
+    this.router.navigate(["sign-in"]);
   }
 }

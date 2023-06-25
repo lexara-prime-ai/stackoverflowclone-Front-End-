@@ -25,6 +25,10 @@ import {
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { Router, RouterModule } from "@angular/router";
 import { UserService } from "src/app/shared/services/users.service";
+import { AuthenticationService } from "src/app/shared/services/authentication.service";
+import { LOGIN_MODEL } from "src/app/shared/models/user.model";
+import { RESPONSE_MODEL } from "src/app/shared/models/response.model";
+import { REDIRECT_SERVICE } from "src/app/shared/services/redirect.service";
 
 @Component({
   selector: "sign-in",
@@ -42,7 +46,12 @@ export class SignInComponent implements OnInit {
   SIGN_IN_FORM!: FormGroup;
   DEFAULT_FORM_DATA = DEFAULT_FORM_DATA;
 
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private authenticationService: AuthenticationService,
+    private redirectService: REDIRECT_SERVICE
+  ) { }
 
   ngOnInit(): void {
     this.SIGN_IN_FORM = this.formBuilder.group({
@@ -51,18 +60,25 @@ export class SignInComponent implements OnInit {
     });
   }
 
+  //////////////////////////
+  ///// AUTHENTICATION /////
+  //////////////////////////
   SIGN_IN_USER() {
-    // CHECK IF EMAIL = admin@admin.com
-    if(this.SIGN_IN_FORM.get("email")?.value === "admin@admin.com") {
-            // REDIRECT USER TO DASHBOARD AFTER 2s
-    setTimeout(() => {
-      this.router.navigate(['dashboard']);
-    }, 2000);
-    } else {
-      // REDIRECT USER TO QA PANEL AFTER 2s
-    setTimeout(() => {
-      this.router.navigate(['questions']);
-    }, 2000);
+    if (this.SIGN_IN_FORM.valid) {
+      const user: LOGIN_MODEL = this.SIGN_IN_FORM.value;
+      // SIGN USER
+      this.authenticationService.signInUser(user).subscribe((signInResponse: RESPONSE_MODEL) => {
+        // RETRIEVE RESPONSE
+        const response = signInResponse.response;
+        // RETRIEVE TOKEN
+        const TOKEN = signInResponse.TOKEN;
+        // SAVE TOKEN TO LOCAL STORAGE
+        localStorage.setItem("TOKEN", TOKEN);
+        // console.log(response);
+        // REDIRECT USER TO Q-A PANEL 
+        this.redirectService.REDIRECT("questions");
+      });
+
     }
   }
 }

@@ -5,3 +5,9 @@ export interface USER_MODEL {
     email: string;
     password: string;
 }
+
+/* LOGIN MODEL */
+export interface LOGIN_MODEL {
+    email: string;
+    password: string;
+}

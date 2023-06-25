@@ -7,6 +7,8 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { USER_MODEL } from '../../../../shared/models/user.model';
 import * as fromRoot from '../../../../state/app.state';
 
+// HELPERS
+import { ID_GENERATOR } from 'src/app/shared/helpers/id-generator';
 
 export interface UserState extends EntityState<USER_MODEL> {
     selectedUserId: number | null,
@@ -19,8 +21,11 @@ export interface AppState extends fromRoot.AppState {
     users: UserState
 }
 
+// DEFAULT ID
+const DEFAULT_ID = ID_GENERATOR.generateNumericId(10);
+
 export const userAdapter: EntityAdapter<USER_MODEL> = createEntityAdapter<USER_MODEL>({
-    selectId: (e) => e.user_id
+    selectId: (e) => e.user_id || DEFAULT_ID /* DEFAULT ID WILL BE USED IF user_id IS ABSENT */
 });
 
 export const defaultUser: UserState = {

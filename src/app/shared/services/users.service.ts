@@ -1,8 +1,10 @@
 import { Injectable } from "@angular/core";
 import { ValidatorFn, Validators } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
-import { USER_MODEL } from "../models/user.model";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Observable, catchError, map, throwError } from "rxjs";
+import { LOGIN_MODEL, USER_MODEL } from "../models/user.model";
+import { RESPONSE_MODEL } from "../models/response.model";
+import { MessageBoxService } from "./message-box.service";
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +13,7 @@ export class UserService {
     /* BASE URL */
     private BASE_URL = `http://localhost:8000`;
 
-    constructor(private HTTP: HttpClient) { }
+    constructor(private HTTP: HttpClient, private messageBoxService: MessageBoxService) { }
 
     /* GET ALL USERS */
     getUsers(): Observable<USER_MODEL[]> {
@@ -41,7 +43,7 @@ export class UserService {
         return this.HTTP.delete(`${this.BASE_URL}/users/${payload}`);
     }
 
-
+  
 
     /**************************
     **** CUSTOM VALIDATORS ****

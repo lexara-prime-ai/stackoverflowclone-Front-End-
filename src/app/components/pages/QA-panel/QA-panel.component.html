@@ -179,8 +179,9 @@
                         <!-- CONTEXT LINK -->
                         <a class="context-link context-link-dynamic">
                             featured
+                            <!-- DISPLAY THE TOTAL LENGTH OF THE ARRAY -->
                             <p class="context-link-count">
-                                432
+                                {{ (questions$ | async)?.length }}
                             </p>
                         </a>
                         <!-- CONTEXT LINK -->
@@ -204,86 +205,99 @@
                     <!-- QUESTION CONTENT: Question card & Question controls -->
                     <div class="question-content" *ngFor="let question of (questions$ | async)">
                         <div class="question-wrapper">
-                            <!-- QUESTION CARD -->
-                            <div class="question-card">
-                                <!-- QUESTION -->
-                                <h3 class="question">
-                                    {{question.question}}
-                                </h3>
-                                <!-- CATEGORIES -->
-                                <div class="categories">
-                                    <!-- CATEGORY -->
-                                    <p class="category">
-                                        {{question.category}}
-                                    </p>
+                            <div class="question-details">
+                                <!-- QUESTION CARD -->
+                                <div class="question-card">
+                                    <!-- QUESTION -->
+                                    <h3 class="question">
+                                        {{question.question}}
+                                    </h3>
+                                    <!-- CATEGORIES -->
+                                    <div class="categories">
+                                        <!-- CATEGORY -->
+                                        <p class="category">
+                                            {{question.category}}
+                                        </p>
+                                    </div>
+
+                                    <!-- POST INFO -->
+                                    <div class="post-info">
+                                        <fa-icon class="card-icon" [icon]="penIcon"
+                                            (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
+                                        <h4 class="info">
+                                            modified {{formatDate(question.date_created)}} by
+                                            <span>
+                                                {{question.question_asker}}
+                                            </span>
+                                        </h4>
+                                    </div>
                                 </div>
 
-                                <!-- POST INFO -->
-                                <div class="post-info">
-                                    <fa-icon class="card-icon" [icon]="penIcon"
-                                        (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
-                                    <h4 class="info">
-                                        modified {{formatDate(question.date_created)}} by
-                                        <span>
-                                            {{question.question_asker}}
-                                        </span>
-                                    </h4>
+                                <!-- QUESTION CONTROLS -->
+                                <div class="question-controls">
+                                    <!-- CONTROL -->
+                                    <div class="control">
+                                        <!-- CONTROL COUNT -->
+                                        <h2 class="control-count">
+                                            0
+                                        </h2>
+                                        <!-- CONTROL NAME -->
+                                        <p class="control-name">
+                                            votes
+                                        </p>
+                                        <!-- CONTROL ICON -->
+                                        <a class="control-icon">
+                                            <fa-icon [icon]="thumbsUpIcon"></fa-icon>
+                                        </a>
+                                    </div>
+                                    <!-- CONTROL END -->
+                                    <!-- CONTROL -->
+                                    <div class="control">
+                                        <!-- CONTROL COUNT -->
+                                        <h2 class="control-count">
+                                            {{question.answers.length}}
+                                        </h2>
+                                        <!-- CONTROL NAME -->
+                                        <p class="control-name">
+                                            answers
+                                        </p>
+                                        <!-- CONTROL ICON -->
+                                        <a class="control-icon">
+                                            <fa-icon [icon]="inboxIcon"></fa-icon>
+                                        </a>
+                                    </div>
+                                    <!-- CONTROL END -->
+                                    <!-- CONTROL -->
+                                    <div class="control">
+                                        <!-- CONTROL COUNT -->
+                                        <h2 class="control-count">
+                                            {{question.answers.length}}
+                                        </h2>
+                                        <!-- CONTROL NAME -->
+                                        <p class="control-name">
+                                            views
+                                        </p>
+                                        <!-- CONTROL ICON -->
+                                        <a class="control-icon">
+                                            <fa-icon [icon]="eyeIcon"></fa-icon>
+                                        </a>
+                                    </div>
+                                    <!-- CONTROL END -->
                                 </div>
                             </div>
-
-                            <!-- QUESTION CONTROLS
-                         -->
-                            <div class="question-controls">
-                                <!-- CONTROL -->
-                                <div class="control">
-                                    <!-- CONTROL COUNT -->
-                                    <h2 class="control-count">
-                                        0
-                                    </h2>
-                                    <!-- CONTROL NAME -->
-                                    <p class="control-name">
-                                        votes
-                                    </p>
-                                    <!-- CONTROL ICON -->
-                                    <a class="control-icon">
-                                        <fa-icon [icon]="thumbsUpIcon"></fa-icon>
-                                    </a>
-                                </div>
-                                <!-- CONTROL END -->
-                                <!-- CONTROL -->
-                                <div class="control">
-                                    <!-- CONTROL COUNT -->
-                                    <h2 class="control-count">
-                                        {{question.answers.length}}
-                                    </h2>
-                                    <!-- CONTROL NAME -->
-                                    <p class="control-name">
-                                        answers
-                                    </p>
-                                    <!-- CONTROL ICON -->
-                                    <a class="control-icon">
-                                        <fa-icon [icon]="inboxIcon"></fa-icon>
-                                    </a>
-                                </div>
-                                <!-- CONTROL END -->
-                                <!-- CONTROL -->
-                                <div class="control">
-                                    <!-- CONTROL COUNT -->
-                                    <h2 class="control-count">
-                                        {{question.answers.length}}
-                                    </h2>
-                                    <!-- CONTROL NAME -->
-                                    <p class="control-name">
-                                        views
-                                    </p>
-                                    <!-- CONTROL ICON -->
-                                    <a class="control-icon">
-                                        <fa-icon [icon]="eyeIcon"></fa-icon>
-                                    </a>
-                                </div>
-                                <!-- CONTROL END -->
+                            <!--==============-->
+                            <!-- ANSWER INPUT -->
+                            <!--==============-->
+                            <div class="answer-input-wrapper" #textarea>
+                                <fa-icon class="answer-icon" [icon]="pencilIcon"></fa-icon>
+                                <!-- TEXT AREA -->
+                                <textarea id="answer-input" placeholder="Add an answer..."></textarea>
+                                <!-- SUBMIT BUTTON -->
+                                <fa-icon id="answer-btn" [icon]="paperPlaneIcon" (click)="addAnswer(question.question_id)">
+                                </fa-icon>
                             </div>
                         </div>
+
                         <!-- ANSWERS -->
                         <div class="answers" *ngFor="let answer of question.answers">
                             <!-- ANSWER -->

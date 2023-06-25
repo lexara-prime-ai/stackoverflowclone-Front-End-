@@ -221,7 +221,7 @@ header .logo-icon:hover {
 
 .disabled {
     pointer-events: none;
-    opacity: .5;
+    opacity: .7;
 }
 
 

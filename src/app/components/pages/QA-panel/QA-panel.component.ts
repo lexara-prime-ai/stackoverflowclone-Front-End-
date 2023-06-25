@@ -8,6 +8,7 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import {
     IconDefinition,
     faPen,
+    faPencilAlt,
     faBars,
     faSearch,
     faLifeRing,
@@ -23,6 +24,7 @@ import {
     faBookmark,
     faBullhorn,
     faTableCells,
+    faPaperPlane,
     faMessage,
     faThumbsUp,
     faEye,
@@ -53,7 +55,6 @@ export class QAPanelComponent implements OnInit {
     /* DEFAULT PROPERTIES */
     isActive: boolean = false;
     questions$!: Observable<QUESTION_MODEL[]>;
-    parsedQuestions: QUESTION_MODEL[] = [];
     error$!: Observable<string>;
 
     /* ICONS */
@@ -75,9 +76,11 @@ export class QAPanelComponent implements OnInit {
     bullHornIcon: IconDefinition = faBullhorn;
     tableIcon: IconDefinition = faTableCells;
     inboxIcon: IconDefinition = faMessage;
+    paperPlaneIcon: IconDefinition = faPaperPlane;
     thumbsUpIcon: IconDefinition = faThumbsUp;
     eyeIcon: IconDefinition = faEye;
     penIcon: IconDefinition = faPen;
+    pencilIcon: IconDefinition = faPencilAlt;
     pinIcon: IconDefinition = faLocation;
     globeIcon: IconDefinition = faGlobe;
 
@@ -117,5 +120,10 @@ export class QAPanelComponent implements OnInit {
     alter_EDIT_QUESTION_FORM_state(): void {
         // EMITS A BOOLEAN VALUE true
         this.popUpService.openEditQuestionForm();
+    }
+
+    addAnswer(question_id: number) {
+        this.messageBoxService.SHOW_SUCCESS_MESSAGE("Adding answer...");
+        console.log(question_id);
     }
 }

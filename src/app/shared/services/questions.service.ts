@@ -14,7 +14,6 @@ export class QuestionService {
 
     /* GET ALL QUESTIONS */
     getQuestions(): Observable<QUESTION_MODEL[]> {
-        console.log('Fetching Questions...');
         return this.HTTP.get<QUESTION_MODEL[]>(this.BASE_URL + '/questions');
     }
 

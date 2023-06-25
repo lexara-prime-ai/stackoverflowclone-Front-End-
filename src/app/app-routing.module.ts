@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthenticationGuard } from './shared/guards/authentication.guard';
 
 const routes: Routes = [
     {
@@ -8,11 +9,13 @@ const routes: Routes = [
     },
     {
         path: "dashboard",
-        loadComponent: () => import('./components/pages/dashboard/dashboard.component').then(component => component.AdminDashboardComponent)
+        loadComponent: () => import('./components/pages/dashboard/dashboard.component').then(component => component.AdminDashboardComponent),
+        canActivate: [AuthenticationGuard]
     },
     {
         path: "user-profile",
-        loadComponent: () => import('./components/pages/user-profile/user-profile.component').then(component => component.UserProfileComponent)
+        loadComponent: () => import('./components/pages/user-profile/user-profile.component').then(component => component.UserProfileComponent),
+        canActivate: [AuthenticationGuard]
     },
     {
         path: "sign-up",
@@ -28,7 +31,8 @@ const routes: Routes = [
     },
     {
         path: "questions",
-        loadComponent: () => import('./components/pages/QA-panel/QA-panel.component').then(component => component.QAPanelComponent)
+        loadComponent: () => import('./components/pages/QA-panel/QA-panel.component').then(component => component.QAPanelComponent),
+        canActivate: [AuthenticationGuard]
     }
 ];
 
