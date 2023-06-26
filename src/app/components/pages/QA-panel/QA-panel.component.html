@@ -327,12 +327,12 @@
                                 <div class="answer-actions">
                                     <div class="vote-icons">
                                         <!-- UPVOTE -->
-                                        <fa-icon [icon]="upIcon" class="answer-icon"></fa-icon>
+                                        <fa-icon [icon]="upIcon" class="answer-icon" (click)="UPVOTE()"></fa-icon>
                                         <!-- DOWNVOTE -->
-                                        <fa-icon [icon]="downIcon" class="answer-icon"></fa-icon>
+                                        <fa-icon [icon]="downIcon" class="answer-icon" (click)="DOWNVOTE()"></fa-icon>
                                     </div>
                                     <!-- MARK AS PREFERRED -->
-                                    <fa-icon [icon]="checkIcon" class="answer-icon"></fa-icon>
+                                    <fa-icon [icon]="checkIcon" class="answer-icon" (click)="MARK_AS_PREFERRED()"></fa-icon>
                                 </div>
                             </div>
                             <!-- ANSWER END -->

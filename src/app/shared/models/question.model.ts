@@ -9,6 +9,15 @@ export interface QUESTION_MODEL {
     answers: ANSWER_MODEL[]
 }
 
+/* CREATE QUESTION MODEL */
+export interface CREATE_QUESTION_MODEL {
+    question: string;
+    additional_info: string;
+    category: string;
+    user_id: number;
+    display_name: string;
+}
+
 /* ANSWER MODEL */
 export interface ANSWER_MODEL {
     answer_id: number;

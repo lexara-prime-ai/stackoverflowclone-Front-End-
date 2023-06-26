@@ -80,7 +80,7 @@ export class SignUpComponent implements OnInit {
 
     // RESET FORM
     this.SIGN_UP_FORM.reset();
-
+    
     // DISPLAY SUCCESS MESSAGE
     this.messageBoxService.SHOW_SUCCESS_MESSAGE("Signing up...");
 

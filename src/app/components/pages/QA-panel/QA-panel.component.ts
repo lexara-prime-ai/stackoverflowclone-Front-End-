@@ -126,4 +126,16 @@ export class QAPanelComponent implements OnInit {
         this.messageBoxService.SHOW_SUCCESS_MESSAGE("Adding answer...");
         console.log(question_id);
     }
-}
+
+    UPVOTE() {
+        this.messageBoxService.SHOW_SUCCESS_MESSAGE("Answer upvoted...");
+    }
+
+    DOWNVOTE() {
+        this.messageBoxService.SHOW_SUCCESS_MESSAGE("Answer downvoted...");
+    }
+
+    MARK_AS_PREFERRED() {
+        this.messageBoxService.SHOW_SUCCESS_MESSAGE("Answer marked as preferred...");
+    }
+}                                                                                                                                                        

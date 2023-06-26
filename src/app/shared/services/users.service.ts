@@ -1,9 +1,8 @@
 import { Injectable } from "@angular/core";
 import { ValidatorFn, Validators } from "@angular/forms";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable, catchError, map, throwError } from "rxjs";
-import { LOGIN_MODEL, USER_MODEL } from "../models/user.model";
-import { RESPONSE_MODEL } from "../models/response.model";
+import { HttpClient } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { USER_MODEL } from "../models/user.model";
 import { MessageBoxService } from "./message-box.service";
 
 @Injectable({

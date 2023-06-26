@@ -4,6 +4,7 @@ import { Observable, map, catchError, throwError } from "rxjs";
 import { RESPONSE_MODEL } from "../models/response.model";
 import { LOGIN_MODEL } from "../models/user.model";
 import { MessageBoxService } from "./message-box.service";
+import { REDIRECT_SERVICE } from "./redirect.service";
 
 @Injectable({
     providedIn: "root"
@@ -12,7 +13,11 @@ export class AuthenticationService {
     /* BASE URL */
     private BASE_URL = `http://localhost:8000`;
 
-    constructor(private HTTP: HttpClient, private messageBoxService: MessageBoxService) { }
+    constructor(
+        private HTTP: HttpClient,
+        private messageBoxService: MessageBoxService,
+        private redirectService: REDIRECT_SERVICE
+    ) { }
 
     /* SIGN IN USER */
     signInUser(user: LOGIN_MODEL): Observable<RESPONSE_MODEL> {
@@ -37,7 +42,8 @@ export class AuthenticationService {
 
     /* SIGN OUT USER */
     SIGN_OUT() {
-
+        localStorage.removeItem("TOKEN");
+        this.redirectService.REDIRECT("sign-in");
     }
 
     RETRIEVE_TOKEN(): string | null {

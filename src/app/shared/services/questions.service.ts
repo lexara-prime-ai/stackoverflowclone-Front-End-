@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { QUESTION_MODEL } from "../models/question.model";
 
@@ -24,7 +24,14 @@ export class QuestionService {
 
     /* CREATE QUESTION */
     addQuestion(payload: QUESTION_MODEL): Observable<QUESTION_MODEL> {
-        return this.HTTP.post<QUESTION_MODEL>(this.BASE_URL + '/questions', payload);
+        // RETRIEVE TOKEN
+        const TOKEN = localStorage.getItem("TOKEN") || "";
+
+        const headers = new HttpHeaders({
+            "Content-Type": "application/json",
+            "TOKEN": TOKEN
+        })
+        return this.HTTP.post<QUESTION_MODEL>(this.BASE_URL + '/questions', payload, {headers});
     }
 
     /* UPDATE QUESTION */

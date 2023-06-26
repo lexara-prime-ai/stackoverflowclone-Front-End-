@@ -7,6 +7,9 @@ import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { QUESTION_MODEL } from '../../../../shared/models/question.model';
 import * as fromRoot from '../../../../state/app.state';
 
+// HELPERS
+import { ID_GENERATOR } from 'src/app/shared/helpers/id-generator';
+
 
 export interface QuestionState extends EntityState<QUESTION_MODEL> {
     selectedQuestionId: number | null,
@@ -19,8 +22,11 @@ export interface AppState extends fromRoot.AppState {
     questions: QuestionState
 }
 
+// DEFAULT ID
+const DEFAULT_ID = ID_GENERATOR.generateNumericId(10);
+
 export const questionAdapter: EntityAdapter<QUESTION_MODEL> = createEntityAdapter<QUESTION_MODEL>({
-    selectId: (e) => e.question_id
+    selectId: (e) => e.question_id || DEFAULT_ID /* DEFAULT ID WILL BE USED IF question_id IS ABSENT */
 });
 
 export const defaultQuestion: QuestionState = {
