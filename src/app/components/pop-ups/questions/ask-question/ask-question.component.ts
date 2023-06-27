@@ -79,8 +79,6 @@ export class AskQuestionComponent implements OnInit {
             user_id: DECODED_TOKEN.user_id as number,
             display_name: DECODED_TOKEN.display_name as string
         }
-
-        console.log(question);
         
         // IF QUESTION IS VALID
         if (question) {

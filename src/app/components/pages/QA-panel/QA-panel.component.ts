@@ -31,7 +31,8 @@ import {
     faEye,
     faLocation,
     faGlobe,
-    faQuestionCircle
+    faQuestionCircle,
+    faDoorOpen
 } from "@fortawesome/free-solid-svg-icons";
 import { AskQuestionComponent } from "../../pop-ups/questions/ask-question/ask-question.component";
 import { PopUpService } from "src/app/shared/services/pop-up.service";
@@ -46,6 +47,8 @@ import { MessageBoxComponent } from "../../message-box/message-box.component";
 import { MessageBoxService } from "src/app/shared/services/message-box.service";
 import { AnswerService } from "src/app/shared/services/answers.service";
 import { DECODE_TOKEN } from "src/app/shared/helpers/token-verifier";
+import { REDIRECT_SERVICE } from "src/app/shared/services/redirect.service";
+import { AuthenticationService } from "src/app/shared/services/authentication.service";
 
 @Component({
     selector: "home",
@@ -60,9 +63,13 @@ export class QAPanelComponent implements OnInit {
     questions$!: Observable<QUESTION_MODEL[]>;
     error$!: Observable<string>;
     answerForm!: FormGroup;
+    // RETRIEVE AND DECODE TOKEN
+    private TOKEN = localStorage.getItem("TOKEN");
+    private DECODED_TOKEN = DECODE_TOKEN(this.TOKEN);
 
     /* ICONS */
     logo = logo;
+    doorIcon: IconDefinition = faDoorOpen;
     menuIcon: IconDefinition = faBars;
     searchIcon: IconDefinition = faSearch;
     helpIcon: IconDefinition = faLifeRing;
@@ -94,7 +101,8 @@ export class QAPanelComponent implements OnInit {
         private store: Store,
         private formBuilder: FormBuilder,
         private messageBoxService: MessageBoxService,
-        private answerService: AnswerService
+        private answerService: AnswerService,
+        private authenticationService: AuthenticationService
     ) { }
 
     ngOnInit() {
@@ -104,6 +112,10 @@ export class QAPanelComponent implements OnInit {
         this.answerForm = this.formBuilder.group({
             answer: ["", [Validators.required]]
         });
+    }
+
+    LOGOUT() {
+        this.authenticationService.SIGN_OUT();
     }
 
     displayQuestions() {
@@ -137,22 +149,17 @@ export class QAPanelComponent implements OnInit {
     }
 
     addAnswer(question_id: number) {
-        // RETRIEVE AND DECODE TOKEN
-        const TOKEN = localStorage.getItem("TOKEN");
-        const DECODED_TOKEN = DECODE_TOKEN(TOKEN);
-
         const answer: any = {
             answer: this.answerForm.value.answer,
             question_id: question_id,
-            user_id: DECODED_TOKEN.user_id as number,
-            display_name: DECODED_TOKEN.display_name as string
+            user_id: this.DECODED_TOKEN.user_id as number,
+            display_name: this.DECODED_TOKEN.display_name as string
         };
 
-        // console.log(answer);
         this.answerService.addAnswer(answer).subscribe(() => {
             this.messageBoxService.SHOW_SUCCESS_MESSAGE("Adding answer...");
 
-
+            this.answerForm.reset();
         },
             (error) => {
                 this.messageBoxService.SHOW_ERROR_MESSAGE(`Failed to add answer: ${error.message}`)
@@ -161,12 +168,32 @@ export class QAPanelComponent implements OnInit {
         );
     }
 
-    UPVOTE() {
-        this.messageBoxService.SHOW_SUCCESS_MESSAGE("Answer upvoted...");
+    UPVOTE(answer_id: number) {
+        // GET user_id
+        const user_id = this.DECODED_TOKEN.user_id;
+
+        this.answerService.upvoteAnswer(answer_id, user_id).subscribe(() => {
+            this.messageBoxService.SHOW_SUCCESS_MESSAGE("Answer upvoted...");
+        },
+            (error) => {
+                console.error(error);
+                this.messageBoxService.SHOW_ERROR_MESSAGE(`${error.error}`);
+            }
+        );
     }
 
-    DOWNVOTE() {
-        this.messageBoxService.SHOW_SUCCESS_MESSAGE("Answer downvoted...");
+    DOWNVOTE(answer_id: number) {
+        // GET user_id
+        const user_id = this.DECODED_TOKEN.user_id;
+
+        this.answerService.downvoteAnswer(answer_id, user_id).subscribe(() => {
+            this.messageBoxService.SHOW_SUCCESS_MESSAGE("Answer downvoted..."); 
+        },
+            (error) => {
+                console.error(error);
+                this.messageBoxService.SHOW_ERROR_MESSAGE(`${error.error}`);
+            }
+        );
     }
 
     MARK_AS_PREFERRED(answer_id: number) {

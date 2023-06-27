@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { QUESTION_MODEL } from "../models/question.model";
+import { PageReloaderService } from "./page-reloader.service";
 
 @Injectable({
     providedIn: "root"
@@ -10,7 +11,7 @@ export class QuestionService {
     /* BASE URL */
     private BASE_URL = `http://localhost:8000`;
 
-    constructor(private HTTP: HttpClient) { }
+    constructor(private HTTP: HttpClient, private pageReloaderService: PageReloaderService) { }
 
     /* GET ALL QUESTIONS */
     getQuestions(): Observable<QUESTION_MODEL[]> {
@@ -31,6 +32,10 @@ export class QuestionService {
             "Content-Type": "application/json",
             "TOKEN": TOKEN
         });
+
+        setTimeout(() => {
+            this.pageReloaderService.REFRESH_ROUTE();
+        }, 1500);
 
         return this.HTTP.post<QUESTION_MODEL>(this.BASE_URL + '/questions', payload, { headers });
     }

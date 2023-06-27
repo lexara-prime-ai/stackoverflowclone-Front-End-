@@ -23,4 +23,5 @@ export interface ANSWER_MODEL {
     answer_id: number;
     answer: string;
     answerer: string;
+    vote_count: number;
 }
