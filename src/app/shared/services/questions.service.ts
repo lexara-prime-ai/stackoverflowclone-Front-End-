@@ -30,8 +30,9 @@ export class QuestionService {
         const headers = new HttpHeaders({
             "Content-Type": "application/json",
             "TOKEN": TOKEN
-        })
-        return this.HTTP.post<QUESTION_MODEL>(this.BASE_URL + '/questions', payload, {headers});
+        });
+
+        return this.HTTP.post<QUESTION_MODEL>(this.BASE_URL + '/questions', payload, { headers });
     }
 
     /* UPDATE QUESTION */

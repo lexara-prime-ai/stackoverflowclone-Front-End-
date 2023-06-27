@@ -291,10 +291,12 @@
                             <div class="answer-input-wrapper" #textarea>
                                 <fa-icon class="answer-icon" [icon]="pencilIcon"></fa-icon>
                                 <!-- TEXT AREA -->
-                                <textarea id="answer-input" placeholder="Add an answer..."></textarea>
-                                <!-- SUBMIT BUTTON -->
-                                <fa-icon id="answer-btn" [icon]="paperPlaneIcon" (click)="addAnswer(question.question_id)">
-                                </fa-icon>
+                                <form [formGroup]="answerForm">
+                                    <textarea id="answer-input" placeholder="Add an answer..." formControlName="answer"></textarea>
+                                    <!-- SUBMIT BUTTON -->
+                                    <fa-icon id="answer-btn" [icon]="paperPlaneIcon" (click)="addAnswer(question.question_id)">
+                                    </fa-icon>
+                                </form>
                             </div>
                         </div>
 
@@ -332,7 +334,7 @@
                                         <fa-icon [icon]="downIcon" class="answer-icon" (click)="DOWNVOTE()"></fa-icon>
                                     </div>
                                     <!-- MARK AS PREFERRED -->
-                                    <fa-icon [icon]="checkIcon" class="answer-icon" (click)="MARK_AS_PREFERRED()"></fa-icon>
+                                    <fa-icon [icon]="checkIcon" class="answer-icon" (click)="MARK_AS_PREFERRED(answer.answer_id)"></fa-icon>
                                 </div>
                             </div>
                             <!-- ANSWER END -->
