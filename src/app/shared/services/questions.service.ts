@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { QUESTION_MODEL } from "../models/question.model";
+import { QUESTION_MODEL, UPDATE_QUESTION_MODEL } from "../models/question.model";
 import { PageReloaderService } from "./page-reloader.service";
 
 @Injectable({
@@ -41,14 +41,35 @@ export class QuestionService {
     }
 
     /* UPDATE QUESTION */
-    updateQuestion(question: QUESTION_MODEL): Observable<QUESTION_MODEL> {
-        return this.HTTP.patch<QUESTION_MODEL>(`${this.BASE_URL}/questions/${question.question_id}`,
-            question
+    updateQuestion(question: any): Observable<any> {
+        // RETRIEVE TOKEN
+        const TOKEN = localStorage.getItem("TOKEN") || "";
+
+        const headers = new HttpHeaders({
+            "Content-Type": "application/json",
+            "TOKEN": TOKEN
+        });
+        
+        setTimeout(() => {
+            this.pageReloaderService.REFRESH_ROUTE();
+        }, 1500);
+
+        return this.HTTP.put<any>(`${this.BASE_URL}/questions/${question.question_id}`,
+            question,
+            { headers } 
         );
     }
 
     /* DELETE QUESTION */
     deleteQuestion(payload: number) {
-        return this.HTTP.delete(`${this.BASE_URL}/questions/${payload}`);
+        // RETRIEVE TOKEN
+        const TOKEN = localStorage.getItem("TOKEN") || "";
+
+        const headers = new HttpHeaders({
+            "Content-Type": "application/json",
+            "TOKEN": TOKEN
+        });
+
+        return this.HTTP.delete(`${this.BASE_URL}/questions/${payload}`, { headers });
     }
 }

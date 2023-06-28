@@ -34,7 +34,7 @@ export class AuthenticationService {
         }),
             catchError((error: any) => {
                 // DISPLAY ERROR MESSAGE
-                this.messageBoxService.SHOW_ERROR_MESSAGE(error.error.message);
+                this.messageBoxService.SHOW_ERROR_MESSAGE(error.error);
                 return throwError(error);
             })
         );
@@ -43,7 +43,13 @@ export class AuthenticationService {
     /* SIGN OUT USER */
     SIGN_OUT() {
         localStorage.removeItem("TOKEN");
-        this.redirectService.REDIRECT("sign-in");
+
+        // DISPLAY Sign Out MESSAGE
+        this.messageBoxService.SHOW_SUCCESS_MESSAGE("Signing out...");
+
+        setTimeout(() => {
+            this.redirectService.REDIRECT("sign-in");
+        }, 1500);
     }
 
     RETRIEVE_TOKEN(): string | null {

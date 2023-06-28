@@ -80,13 +80,13 @@ export class SignUpComponent implements OnInit {
 
     // RESET FORM
     this.SIGN_UP_FORM.reset();
-    
+
     // DISPLAY SUCCESS MESSAGE
     this.messageBoxService.SHOW_SUCCESS_MESSAGE("Signing up...");
 
     // REDIRECT TO QA PANEL
     setTimeout(() => {
-      this.router.navigate(["questions"]);
+      this.REDIRECT_TO_SIGN_IN_PAGE();
     }, 2000);
   }
 

@@ -22,7 +22,8 @@
                 <!-- QUESTION INPUT -->
                 <input type="text" class="input-text input" formControlName="question" required />
                 <span class="floating-label">
-                    {{ (DEFAULT_FORM_DATA.question.length > 20) ? (DEFAULT_FORM_DATA.question | slice:0:20)+'...': (DEFAULT_FORM_DATA.question) }}
+                    {{ (DEFAULT_FORM_DATA.question.length > 20) ? (DEFAULT_FORM_DATA.question | slice:0:20)+'...':
+                    (DEFAULT_FORM_DATA.question) }}
                 </span>
 
                 <!-- ERROR MESSAGE -->
@@ -41,7 +42,8 @@
                 <!-- QUESTION INPUT -->
                 <input type="text" class="input-text input" formControlName="additional_info" required />
                 <span class="floating-label">
-                    {{ (DEFAULT_FORM_DATA.additional_info.length > 25) ? (DEFAULT_FORM_DATA.additional_info | slice:0:25)+'...': (DEFAULT_FORM_DATA.additional_info) }}
+                    {{ (DEFAULT_FORM_DATA.additional_info.length > 25) ? (DEFAULT_FORM_DATA.additional_info |
+                    slice:0:25)+'...': (DEFAULT_FORM_DATA.additional_info) }}
                 </span>
 
                 <!-- ERROR MESSAGE -->
@@ -60,7 +62,8 @@
                 <!-- QUESTION INPUT -->
                 <input type="text" class="input-text input" formControlName="category" required />
                 <span class="floating-label">
-                    {{ (DEFAULT_FORM_DATA.category.length > 25) ? (DEFAULT_FORM_DATA.category | slice:0:25)+'...': (DEFAULT_FORM_DATA.category) }}
+                    {{ (DEFAULT_FORM_DATA.category.length > 25) ? (DEFAULT_FORM_DATA.category | slice:0:25)+'...':
+                    (DEFAULT_FORM_DATA.category) }}
                 </span>
 
                 <!-- ERROR MESSAGE -->
@@ -76,7 +79,7 @@
         </div>
         <!-- BUTTONS -->
         <div class="button-wrapper">
-            <button class="submit-btn btn" [ngClass]="{ 'disabled': EDIT_QUESTION_FORM.invalid }">
+            <button class="submit-btn btn" [ngClass]="{ 'disabled': EDIT_QUESTION_FORM.invalid }" (click)="UPDATE_QUESTION()">
                 Update question
             </button>
 

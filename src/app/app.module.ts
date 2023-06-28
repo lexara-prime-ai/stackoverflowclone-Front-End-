@@ -7,7 +7,7 @@ import { AppComponent } from "./app.component";
 import { SignUpComponent } from "./components/pages/authentication/sign-up/sign-up.component";
 import { SignInComponent } from "./components/pages/authentication/sign-in/sign-in.component";
 import { RouterModule } from "@angular/router";
-import { NgModel } from "@angular/forms";
+import { FormsModule, NgModel } from "@angular/forms";
 import { PasswordResetComponent } from "./components/pages/authentication/password-reset/password-reset.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { QAPanelComponent } from "./components/pages/QA-panel/QA-panel.component";
@@ -50,6 +50,7 @@ import { MessageBoxComponent } from "./components/message-box/message-box.compon
     UserProfileComponent,
     MessageBoxComponent,
     FontAwesomeModule,
+    FormsModule,
     AppRoutingModule,
     BrowserModule,
     RouterModule,

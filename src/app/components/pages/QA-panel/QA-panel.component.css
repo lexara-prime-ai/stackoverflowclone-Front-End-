@@ -107,6 +107,13 @@
     color: var(--amber);
 }
 
+.disabled {
+    opacity: .5;
+    filter: grayscale(1);
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
 /* STYLING FOR MAIN CONTENT WRAPPER */
 .wrapper {
     display: -ms-grid;
@@ -367,6 +374,10 @@
     gap: 2rem;
     padding: 1.2rem;
     border-bottom: 1.5px solid var(--light-gray);
+}
+
+.question-wrapper {
+    width: 100%;
 }
 
 .question-wrapper .question-details {

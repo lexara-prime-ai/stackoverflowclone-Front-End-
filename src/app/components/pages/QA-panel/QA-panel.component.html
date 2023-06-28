@@ -121,7 +121,7 @@
                     <a class="toggle">
                         <fa-icon class="icon" [icon]="searchIcon"></fa-icon>
                     </a>
-                    <input type="search" name="search" id="search-box" placeholder="Search" />
+                    <input type="text" [(ngModel)]="searchTerm" name="search" id="search-box" placeholder="Search" />
                 </div>
             </div>
             <!-- CONTROLS -->
@@ -212,7 +212,7 @@
                 <div class="questions">
 
                     <!-- QUESTION CONTENT: Question card & Question controls -->
-                    <div class="question-content" *ngFor="let question of (questions$ | async)">
+                    <div class="question-content" *ngFor="let question of (questions$ | async) | filter: searchTerm">
                         <div class="question-wrapper">
                             <div class="question-details">
                                 <!-- QUESTION CARD -->
@@ -232,7 +232,8 @@
                                     <!-- POST INFO -->
                                     <div class="post-info">
                                         <fa-icon class="card-icon" [icon]="penIcon"
-                                            (click)="alter_EDIT_QUESTION_FORM_state()"></fa-icon>
+                                            (click)="alter_EDIT_QUESTION_FORM_state(question)"
+                                            [ngClass]="{'disabled': !IS_AUTHORIZED(question.question_asker_id)}"></fa-icon>
                                         <h4 class="info">
                                             modified {{formatDate(question.date_created)}} by
                                             <span>
@@ -345,7 +346,8 @@
                                         <!-- VOTE COUNT -->
                                         <p class="vote-count">{{answer.vote_count}}</p>
                                         <!-- DOWNVOTE -->
-                                        <fa-icon [icon]="downIcon" class="answer-icon" (click)="DOWNVOTE(answer.answer_id)"></fa-icon>
+                                        <fa-icon [icon]="downIcon" class="answer-icon"
+                                            (click)="DOWNVOTE(answer.answer_id)"></fa-icon>
                                     </div>
                                     <!-- MARK AS PREFERRED -->
                                     <fa-icon [icon]="checkIcon" class="answer-icon"

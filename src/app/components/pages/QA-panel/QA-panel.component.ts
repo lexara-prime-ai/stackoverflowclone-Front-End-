@@ -1,9 +1,9 @@
 // FILE PATHS
 const logo = "../../../assets/logos/web/png/logo_colored.png" as string;
 
-import { FormGroup, FormBuilder, ReactiveFormsModule, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, ReactiveFormsModule, Validators, NgModel, FormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import {
@@ -49,23 +49,30 @@ import { AnswerService } from "src/app/shared/services/answers.service";
 import { DECODE_TOKEN } from "src/app/shared/helpers/token-verifier";
 import { REDIRECT_SERVICE } from "src/app/shared/services/redirect.service";
 import { AuthenticationService } from "src/app/shared/services/authentication.service";
+import { TempService } from "src/app/shared/services/temp.service";
+
+/* CUSTOM PIPES */
+import { SearchFilterPipe } from '../../../shared/pipes/search-filter.pipe';
 
 @Component({
     selector: "home",
     templateUrl: "QA-panel.component.html",
     styleUrls: ["QA-panel.component.css"],
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, RouterModule, FontAwesomeModule, AskQuestionComponent, EditQuestionComponent, MessageBoxComponent],
+    imports: [CommonModule, ReactiveFormsModule, RouterModule, FontAwesomeModule, AskQuestionComponent, EditQuestionComponent, MessageBoxComponent, FormsModule, SearchFilterPipe]
 })
 export class QAPanelComponent implements OnInit {
     /* DEFAULT PROPERTIES */
     isActive: boolean = false;
+    searchTerm: string = "";
     questions$!: Observable<QUESTION_MODEL[]>;
     error$!: Observable<string>;
     answerForm!: FormGroup;
     // RETRIEVE AND DECODE TOKEN
     private TOKEN = localStorage.getItem("TOKEN");
     private DECODED_TOKEN = DECODE_TOKEN(this.TOKEN);
+    // SET user_id FROM TOKEN
+    user_id: number = this.DECODED_TOKEN.user_id;
 
     /* ICONS */
     logo = logo;
@@ -102,7 +109,8 @@ export class QAPanelComponent implements OnInit {
         private formBuilder: FormBuilder,
         private messageBoxService: MessageBoxService,
         private answerService: AnswerService,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private tempService: TempService
     ) { }
 
     ngOnInit() {
@@ -112,6 +120,11 @@ export class QAPanelComponent implements OnInit {
         this.answerForm = this.formBuilder.group({
             answer: ["", [Validators.required]]
         });
+    }
+
+    IS_AUTHORIZED(question_asker_id: any): boolean {
+        // COMPARE user_id FROM TOKEN WITH user_id FROM QUESTION
+        return question_asker_id === this.user_id;
     }
 
     LOGOUT() {
@@ -143,9 +156,11 @@ export class QAPanelComponent implements OnInit {
     }
 
     // CHANGE isActive STATE TO true
-    alter_EDIT_QUESTION_FORM_state(): void {
+    alter_EDIT_QUESTION_FORM_state(question: any): void {
         // EMITS A BOOLEAN VALUE true
         this.popUpService.openEditQuestionForm();
+        this.popUpService.prepopulateEditQuestionForm(question);
+        this.tempService.setQuestion(question);
     }
 
     addAnswer(question_id: number) {
@@ -187,7 +202,7 @@ export class QAPanelComponent implements OnInit {
         const user_id = this.DECODED_TOKEN.user_id;
 
         this.answerService.downvoteAnswer(answer_id, user_id).subscribe(() => {
-            this.messageBoxService.SHOW_SUCCESS_MESSAGE("Answer downvoted..."); 
+            this.messageBoxService.SHOW_SUCCESS_MESSAGE("Answer downvoted...");
         },
             (error) => {
                 console.error(error);

@@ -127,6 +127,5 @@ export const getCurrentQuestionId = createSelector(
 export const getCurentQuestion = createSelector(
     getQuestionFeatureState,
     getCurrentQuestionId,
-    state => state.selectedQuestionId !== null ? state.entities
-    [state.selectedQuestionId] : null
+    state => state.selectedQuestionId !== null ? state.entities[state.selectedQuestionId] : null
 )

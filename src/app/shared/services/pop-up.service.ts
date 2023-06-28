@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Subject } from "rxjs";
+import { BehaviorSubject, Subject, tap } from "rxjs";
 
 @Injectable({
     providedIn: "root"
@@ -15,6 +15,13 @@ export class PopUpService {
     private editQuestionFormSubject = new Subject<boolean>();
     editQuestionForm$ = this.editQuestionFormSubject.asObservable();
 
+    private editQuestionFormContentSubject = new BehaviorSubject<any>(null);
+    editQuestionFormContent$ = this.editQuestionFormContentSubject.asObservable();
+
+    // PREPOPULATE FORM SUBJECT
+    private prepopulateFormSubject = new Subject<any>();
+    prepopulateForm$ = this.prepopulateFormSubject.asObservable();
+
     /* METHODS FOR OPENING POP UPS */
     openAskQuestionForm(): void {
         this.askQuestionFormSubject.next(true);
@@ -25,6 +32,21 @@ export class PopUpService {
         this.editQuestionFormSubject.next(true);
         this.askQuestionFormSubject.next(false);
     }
+
+    /* PREPOPULATE FORM */
+    prepopulateEditQuestionForm(question: any) {
+        this.editQuestionFormContentSubject.next(question);
+        this.prepopulateFormSubject.next(question);
+    }
+
+    getEditQuestionForm() {
+        return this.editQuestionFormSubject.asObservable().pipe(
+          tap((value: any) => {
+            console.log(value);
+          })
+        );
+    }
+    
 
     /* METHODS FOR CLOSING POP UPS */
     closeAskQuestionForm(): void {
