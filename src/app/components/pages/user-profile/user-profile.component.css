@@ -23,8 +23,8 @@
 }
 
 .logo {
-    width: 100%;
-    padding: 1rem;
+    width: 80%;
+    padding: 2rem;
     margin-bottom: 2rem;
     cursor: pointer;
     -webkit-transition: .4s all ease;

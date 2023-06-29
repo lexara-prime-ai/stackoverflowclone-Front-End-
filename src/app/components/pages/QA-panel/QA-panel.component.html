@@ -48,15 +48,6 @@
                     <!-- INDICATOR -->
                     <span class="indicator"></span>
                     <a class="link">
-                        <fa-icon [icon]="userIcon"></fa-icon>
-                        USERS
-                    </a>
-                </li>
-                <!-- LINK ITEM -->
-                <li class="link-item">
-                    <!-- INDICATOR -->
-                    <span class="indicator"></span>
-                    <a class="link">
                         <fa-icon [icon]="bookmarkIcon"></fa-icon>
                         BADGES
                     </a>
@@ -217,6 +208,9 @@
                             <div class="question-details">
                                 <!-- QUESTION CARD -->
                                 <div class="question-card">
+                                    <fa-icon [icon]="deleteIcon" class="delete-icon"
+                                        [ngClass]="{'hidden': !IS_AUTHORIZED(question.question_asker_id)}"
+                                        (click)="DELETE_QUESTION(question.question_id)"></fa-icon>
                                     <!-- QUESTION -->
                                     <h3 class="question">
                                         {{question.question}}

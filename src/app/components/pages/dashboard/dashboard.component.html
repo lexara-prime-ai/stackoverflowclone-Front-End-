@@ -11,9 +11,9 @@
                 <li class="link-item">
                     <!-- INDICATOR -->
                     <span class="indicator"></span>
-                    <a class="link">
-                        <fa-icon [icon]="briefCaseIcon"></fa-icon>
-                        JOBS
+                    <a class="link" [routerLink]="['/questions']">
+                        <fa-icon [icon]="questionMarkIcon"></fa-icon>
+                        QUESTIONS
                     </a>
                 </li>
                 <!-- LINK ITEM -->
@@ -23,15 +23,6 @@
                     <a class="link">
                         <fa-icon [icon]="documentIcon"></fa-icon>
                         DOCUMENTATION
-                    </a>
-                </li>
-                <!-- LINK ITEM -->
-                <li class="link-item">
-                    <!-- INDICATOR -->
-                    <span class="indicator"></span>
-                    <a class="link">
-                        <fa-icon [icon]="tagIcon"></fa-icon>
-                        TAGS
                     </a>
                 </li>
                 <!-- LINK ITEM -->
@@ -57,6 +48,15 @@
                             11
                         </p>
                     </div>
+                </li>
+                <!-- LINK ITEM -->
+                <li class="link-item">
+                    <!-- INDICATOR -->
+                    <span class="indicator"></span>
+                    <a class="link" (click)="LOGOUT()">
+                        <fa-icon [icon]="doorIcon"></fa-icon>
+                        LOG OUT
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -148,7 +148,7 @@
                         <a class="context-link context-link-dynamic">
                             new users
                             <p class="context-link-count">
-                                80
+                                {{ (users$ | async)?.length }}
                             </p>
                         </a>
                         <!-- CONTEXT LINK -->
@@ -178,7 +178,8 @@
                                 active
                             </h3>
 
-                            <fa-icon class="trash-icon" [icon]="trashIcon" (click)="deleteUser(user)"></fa-icon>
+                            <fa-icon class="trash-icon" [icon]="trashIcon" *ngIf="user.display_name !== 'admin'"
+                                (click)="deleteUser(user)"></fa-icon>
                         </div>
                     </div>
                     <!-- USER END -->

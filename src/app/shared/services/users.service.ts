@@ -11,6 +11,7 @@ import { MessageBoxService } from "./message-box.service";
 export class UserService {
     /* BASE URL */
     private BASE_URL = `http://localhost:8000`;
+    private MAIL_BASED_REGISTRATION = `http://localhost:5000`;
 
     constructor(private HTTP: HttpClient, private messageBoxService: MessageBoxService) { }
 
@@ -27,7 +28,7 @@ export class UserService {
 
     /* CREATE USER */
     createUser(payload: USER_MODEL): Observable<USER_MODEL> {
-        return this.HTTP.post<USER_MODEL>(this.BASE_URL + '/users', payload);
+        return this.HTTP.post<USER_MODEL>(this.MAIL_BASED_REGISTRATION + '/sign-up', payload);
     }
 
     /* UPDATE USER */

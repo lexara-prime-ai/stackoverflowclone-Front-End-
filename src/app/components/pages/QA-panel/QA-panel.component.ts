@@ -32,7 +32,8 @@ import {
     faLocation,
     faGlobe,
     faQuestionCircle,
-    faDoorOpen
+    faDoorOpen,
+    faDeleteLeft
 } from "@fortawesome/free-solid-svg-icons";
 import { AskQuestionComponent } from "../../pop-ups/questions/ask-question/ask-question.component";
 import { PopUpService } from "src/app/shared/services/pop-up.service";
@@ -47,12 +48,13 @@ import { MessageBoxComponent } from "../../message-box/message-box.component";
 import { MessageBoxService } from "src/app/shared/services/message-box.service";
 import { AnswerService } from "src/app/shared/services/answers.service";
 import { DECODE_TOKEN } from "src/app/shared/helpers/token-verifier";
-import { REDIRECT_SERVICE } from "src/app/shared/services/redirect.service";
 import { AuthenticationService } from "src/app/shared/services/authentication.service";
 import { TempService } from "src/app/shared/services/temp.service";
 
 /* CUSTOM PIPES */
 import { SearchFilterPipe } from '../../../shared/pipes/search-filter.pipe';
+import { QuestionService } from "src/app/shared/services/questions.service";
+import { PageReloaderService } from "src/app/shared/services/page-reloader.service";
 
 @Component({
     selector: "home",
@@ -81,6 +83,7 @@ export class QAPanelComponent implements OnInit {
     searchIcon: IconDefinition = faSearch;
     helpIcon: IconDefinition = faLifeRing;
     desktopIcon: IconDefinition = faDesktop;
+    deleteIcon: IconDefinition = faDeleteLeft;
     upIcon: IconDefinition = faAngleUp;
     downIcon: IconDefinition = faAngleDown;
     checkIcon: IconDefinition = faCheckCircle;
@@ -108,8 +111,10 @@ export class QAPanelComponent implements OnInit {
         private store: Store,
         private formBuilder: FormBuilder,
         private messageBoxService: MessageBoxService,
+        private questionService: QuestionService,
         private answerService: AnswerService,
         private authenticationService: AuthenticationService,
+        private pageReloaderService: PageReloaderService,
         private tempService: TempService
     ) { }
 
@@ -220,5 +225,25 @@ export class QAPanelComponent implements OnInit {
                 this.messageBoxService.SHOW_ERROR_MESSAGE(`Failed to mark answer as preferred: ${error}`);
             }
         );
+    }
+
+    DELETE_QUESTION(question_id: number) {
+        // CONFIRM DELETION
+        if (confirm("You're about to delete a question, do you wish to proceed?")) {
+            this.questionService.deleteQuestion(question_id).subscribe(() => {
+                // SUCCESS STATE
+                this.messageBoxService.SHOW_SUCCESS_MESSAGE("Deleting question");
+            },
+                // ERROR STATE
+                (error) => {
+                    console.error(error);
+                    this.messageBoxService.SHOW_ERROR_MESSAGE(error.error);
+                });
+
+            // REFRESH ROUTE AFTER 1.2S
+            setTimeout(() => {
+                this.pageReloaderService.REFRESH_ROUTE();
+            }, 1200);
+        }
     }
 }                                                                                                                                                        

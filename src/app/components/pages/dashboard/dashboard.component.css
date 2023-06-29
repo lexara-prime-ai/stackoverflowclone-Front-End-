@@ -23,8 +23,8 @@
 }
 
 .logo {
-    width: 100%;
-    padding: 1rem;
+    width: 80%;
+    padding: 2rem;
     margin-bottom: 2rem;
     cursor: pointer;
     -webkit-transition: .4s all ease;
@@ -70,17 +70,26 @@
     height: 25px;
 }
 
-.link-item:hover {
+.link {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    gap: .7rem;
+    color: var(--dark-gray);
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+    text-decoration: none;
+}
+
+.link:hover {
     -webkit-transform: translateY(-2px);
     -ms-transform: translateY(-2px);
     transform: translateY(-2px);
     color: var(--black);
-}
-
-.link {
-    display: flex;
-    align-items: center;
-    gap: .7rem;
 }
 
 .message-count {
@@ -348,17 +357,27 @@
 }
 
 .users .user {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
     justify-content: space-between;
     background: var(--white);
     border: 6px solid transparent;
     color: var(--black);
+    -webkit-box-shadow: var(--shadow-dark);
     box-shadow: var(--shadow-dark);
     padding: 1.8rem 3rem;
     margin-bottom: 1rem;
     border-radius: 9px;
+    cursor: -webkit-grab;
     cursor: grab;
+    -webkit-transition: .4s all ease;
+    -o-transition: .4s all ease;
     transition: .4s all ease;
 }
 
@@ -367,11 +386,17 @@
 }
 
 .users .user:hover {
+    -webkit-transform: translateY(-2px);
+    -ms-transform: translateY(-2px);
     transform: translateY(-2px);
 }
 
 .users .user .user-info {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: 1.8rem;
 }
@@ -381,7 +406,11 @@
 }
 
 .users .user .admin-controls {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: 1.5rem;
 }
@@ -397,11 +426,15 @@
 .users .user .admin-controls .trash-icon {
     font-size: 1.2rem;
     cursor: pointer;
+    -webkit-transition: .4s all ease;
+    -o-transition: .4s all ease;
     transition: .4s all ease;
 }
 
 .users .user .admin-controls .trash-icon:hover {
     color: tomato;
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
     transform: scale(1.1);
 }
 
@@ -497,7 +530,11 @@
 
 /* JOB CATEGORIES */
 .job-categories {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: .5rem;
 }
@@ -570,7 +607,11 @@
 }
 
 .hot-question {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     gap: .5rem;
     font-size: .9rem;
@@ -786,4 +827,19 @@
     .users .user {
         padding: .5rem;
     }
+}
+
+.example {
+    display: -ms-grid;
+    display: grid;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background: -webkit-gradient(linear, left top, left bottom, from(white), to(black));
+    background: -o-linear-gradient(top, white, black);
+    background: linear-gradient(to bottom, white, black);
 }

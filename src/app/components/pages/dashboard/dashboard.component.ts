@@ -23,7 +23,8 @@ import {
     faLocation,
     faGlobe,
     faQuestionCircle,
-    faTrash
+    faTrash,
+    faDoorOpen
 } from "@fortawesome/free-solid-svg-icons";
 import { AskQuestionComponent } from "../../pop-ups/questions/ask-question/ask-question.component";
 import { PopUpService } from "src/app/shared/services/pop-up.service";
@@ -35,6 +36,7 @@ import { Store, select } from "@ngrx/store";
 import * as fromUser from '../authentication/state/user.reducer';
 import * as userActions from '../authentication/state/user.actions';
 import { PageReloaderService } from "src/app/shared/services/page-reloader.service";
+import { AuthenticationService } from "src/app/shared/services/authentication.service";
 
 @Component({
     selector: "dashboard",
@@ -51,6 +53,7 @@ export class AdminDashboardComponent implements OnInit {
 
     /* ICONS */
     logo = logo;
+    doorIcon: IconDefinition = faDoorOpen;
     menuIcon: IconDefinition = faBars;
     searchIcon: IconDefinition = faSearch;
     helpIcon: IconDefinition = faLifeRing;
@@ -70,7 +73,11 @@ export class AdminDashboardComponent implements OnInit {
     trashIcon: IconDefinition = faTrash;
 
     // INJECT MODULAR SERVICES
-    constructor(private popUpService: PopUpService, private pageReloaderService: PageReloaderService, private store: Store<fromUser.AppState>) { }
+    constructor(
+        private pageReloaderService: PageReloaderService,
+        private authenticationService: AuthenticationService,
+        private store: Store<fromUser.AppState>
+    ) { }
 
     ngOnInit() {
         this.displayUsers();
@@ -92,5 +99,9 @@ export class AdminDashboardComponent implements OnInit {
                 this.pageReloaderService.REFRESH_ROUTE();
             }, 200)
         }
+    }
+
+    LOGOUT() {
+        this.authenticationService.SIGN_OUT();
     }
 }

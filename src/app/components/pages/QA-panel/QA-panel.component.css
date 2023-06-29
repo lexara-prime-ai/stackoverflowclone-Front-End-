@@ -24,8 +24,8 @@
 }
 
 .logo {
-    width: 100%;
-    padding: 1rem;
+    width: 80%;
+    padding: 2rem;
     margin-bottom: 2rem;
     cursor: pointer;
     -webkit-transition: .4s all ease;
@@ -114,6 +114,11 @@
     cursor: not-allowed;
 }
 
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
 /* STYLING FOR MAIN CONTENT WRAPPER */
 .wrapper {
     display: -ms-grid;
@@ -149,6 +154,16 @@
 .icon {
     font-size: 1.1rem;
     color: var(--dark-gray);
+}
+
+.delete-icon {
+    color: var(--light-gray);
+    transition: .4s all ease;
+    cursor: pointer;
+}
+
+.delete-icon:hover {
+    color: tomato;
 }
 
 .main-controls {
