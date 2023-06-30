@@ -74,11 +74,17 @@ export class SignInComponent implements OnInit {
         const TOKEN = signInResponse.TOKEN;
         // SAVE TOKEN TO LOCAL STORAGE
         localStorage.setItem("TOKEN", TOKEN);
-        // console.log(response);
-        // REDIRECT USER TO Q-A PANEL 
-        this.redirectService.REDIRECT("questions");
+        // Check if the email is "stacknewbie@gmail.com"
+        if (user.email === 'stacknewbie@gmail.com') {
+          // REDIRECT USER TO DASHBOARD
+          this.redirectService.REDIRECT("dashboard");
+        } else {
+          // REDIRECT USER TO Q-A PANEL
+          this.redirectService.REDIRECT("questions");
+        }
       });
-
     }
   }
 }
+
+

@@ -19,7 +19,6 @@ export class AnswerService {
     /* ADD ANSWER */
     addAnswer(answer: any) {
 
-
         const headers = new HttpHeaders({
             "Content-Type": "application/json",
             "TOKEN": this.TOKEN

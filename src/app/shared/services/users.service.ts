@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
-import { ValidatorFn, Validators } from "@angular/forms";
+import { FormGroup, ValidatorFn, Validators } from "@angular/forms";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { USER_MODEL } from "../models/user.model";
+import { LOGIN_MODEL, USER_MODEL } from "../models/user.model";
 import { MessageBoxService } from "./message-box.service";
 
 @Injectable({
@@ -12,6 +12,7 @@ export class UserService {
     /* BASE URL */
     private BASE_URL = `http://localhost:8000`;
     private MAIL_BASED_REGISTRATION = `http://localhost:5000`;
+    private RESET_PASSWORD_URL = `http://localhost:4000`;
 
     constructor(private HTTP: HttpClient, private messageBoxService: MessageBoxService) { }
 
@@ -43,7 +44,18 @@ export class UserService {
         return this.HTTP.delete(`${this.BASE_URL}/users/${payload}`);
     }
 
-  
+    resetPassword(form: FormGroup) {
+
+        const email: string = form.get("email")?.value;
+        const password: string = form.get("password")?.value;
+
+        const payload: LOGIN_MODEL = {
+            email: email,
+            password: password
+        };
+
+        return this.HTTP.put(`${this.RESET_PASSWORD_URL}/reset/password/${email}`, payload)
+    }
 
     /**************************
     **** CUSTOM VALIDATORS ****

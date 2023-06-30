@@ -310,43 +310,91 @@
                         <div class="answers" *ngFor="let answer of question.answers">
                             <!-- ANSWER -->
                             <div class="answer">
-                                <!-- ANSWER CONTENT -->
-                                <div class="answer-content">
-                                    <!-- RESPONDENT PROFILE -->
-                                    <div class="respondent-profile">
-                                        <!-- AVATAR -->
-                                        <img src="../../../../assets/avatars/user.png" alt="avatar"
-                                            class="respondent-avatar">
+                                <!-- ANSWER WRAPPER -->
+                                <div class="answer-wrapper">
+                                    <!-- CONTENT WRAPPER -->
+                                    <div class="answer-content-wrapper">
+                                        <!-- ANSWER CONTENT -->
+                                        <div class="answer-content">
+                                            <!-- RESPONDENT PROFILE -->
+                                            <div class="respondent-profile">
+                                                <!-- AVATAR -->
+                                                <img src="../../../../assets/avatars/user.png" alt="avatar"
+                                                    class="respondent-avatar">
 
-                                        <!-- RESPONDENT NAME -->
-                                        <p class="respondent-name">
-                                            {{answer.answerer}}
-                                        </p>
+                                                <!-- RESPONDENT NAME -->
+                                                <p class="respondent-name">
+                                                    {{answer.answerer}}
+                                                </p>
+                                            </div>
+                                            <!-- RESPONDENT ANSWER -->
+                                            <div class="response">
+                                                <p>
+                                                    {{answer.answer}}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!-- ANSWER ACTIONS -->
+                                        <div class="answer-actions">
+                                            <div class="vote-icons">
+                                                <!-- UPVOTE -->
+                                                <fa-icon [icon]="upIcon" class="answer-icon"
+                                                    (click)="UPVOTE(answer.answer_id)"></fa-icon>
+                                                <!-- VOTE COUNT -->
+                                                <p class="vote-count">{{answer.vote_count}}</p>
+                                                <!-- DOWNVOTE -->
+                                                <fa-icon [icon]="downIcon" class="answer-icon"
+                                                    (click)="DOWNVOTE(answer.answer_id)"></fa-icon>
+                                            </div>
+                                            <!-- MARK AS PREFERRED -->
+                                            <fa-icon [icon]="checkIcon" class="answer-icon"
+                                                (click)="MARK_AS_PREFERRED(answer.answer_id)"></fa-icon>
+                                        </div>
                                     </div>
-                                    <!-- RESPONDENT ANSWER -->
-                                    <div class="response">
-                                        <p>
-                                            {{answer.answer}}
-                                        </p>
+
+                                    <!-- COMMENTS -->
+                                    <div class="comments" *ngFor="let comment of answer.comments">
+                                        <!-- COMMENT -->
+                                        <div class="comment">
+                                            <!-- RESPONDENT PROFILE -->
+                                            <div class="commenter-profile">
+                                                <!-- AVATAR -->
+                                                <img src="../../../../assets/avatars/user.png" alt="avatar"
+                                                    class="commenter-avatar">
+
+                                                <!-- RESPONDENT NAME -->
+                                                <p class="commenter-name">
+                                                    {{comment.commenter}}
+                                                </p>
+                                            </div>
+                                            <!-- RESPONDENT ANSWER -->
+                                            <div class="comment-response">
+                                                <p>
+                                                    {{comment.comment}}
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <!-- COMMENT END -->
                                     </div>
                                 </div>
 
-                                <!-- ANSWER ACTIONS -->
-                                <div class="answer-actions">
-                                    <div class="vote-icons">
-                                        <!-- UPVOTE -->
-                                        <fa-icon [icon]="upIcon" class="answer-icon"
-                                            (click)="UPVOTE(answer.answer_id)"></fa-icon>
-                                        <!-- VOTE COUNT -->
-                                        <p class="vote-count">{{answer.vote_count}}</p>
-                                        <!-- DOWNVOTE -->
-                                        <fa-icon [icon]="downIcon" class="answer-icon"
-                                            (click)="DOWNVOTE(answer.answer_id)"></fa-icon>
-                                    </div>
-                                    <!-- MARK AS PREFERRED -->
-                                    <fa-icon [icon]="checkIcon" class="answer-icon"
-                                        (click)="MARK_AS_PREFERRED(answer.answer_id)"></fa-icon>
+                                <!--===============-->
+                                <!-- COMMENT INPUT -->
+                                <!--===============-->
+                                <div class="comment-input-wrapper" #textarea>
+                                    <fa-icon class="comment-icon" [icon]="commentIcon"></fa-icon>
+                                    <!-- TEXT AREA -->
+                                    <form [formGroup]="commentForm">
+                                        <textarea id="comment-input" placeholder="Add an comment..."
+                                            formControlName="comment"></textarea>
+                                        <!-- SUBMIT BUTTON -->
+                                        <fa-icon id="comment-btn" [icon]="paperPlaneIcon"
+                                            (click)="addComment(answer.answer_id)">
+                                        </fa-icon>
+                                    </form>
                                 </div>
+
                             </div>
                             <!-- ANSWER END -->
                         </div>

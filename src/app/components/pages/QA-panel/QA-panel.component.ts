@@ -33,7 +33,8 @@ import {
     faGlobe,
     faQuestionCircle,
     faDoorOpen,
-    faDeleteLeft
+    faDeleteLeft,
+    faComment
 } from "@fortawesome/free-solid-svg-icons";
 import { AskQuestionComponent } from "../../pop-ups/questions/ask-question/ask-question.component";
 import { PopUpService } from "src/app/shared/services/pop-up.service";
@@ -43,7 +44,7 @@ import { QUESTION_MODEL } from "src/app/shared/models/question.model";
 import { Store, select } from "@ngrx/store";
 
 import * as fromQuestion from '../QA-panel/state/question.reducer';
-import * as questionActions from '../QA-panel/state/question.actions'
+import * as questionActions from '../QA-panel/state/question.actions';
 import { MessageBoxComponent } from "../../message-box/message-box.component";
 import { MessageBoxService } from "src/app/shared/services/message-box.service";
 import { AnswerService } from "src/app/shared/services/answers.service";
@@ -55,6 +56,7 @@ import { TempService } from "src/app/shared/services/temp.service";
 import { SearchFilterPipe } from '../../../shared/pipes/search-filter.pipe';
 import { QuestionService } from "src/app/shared/services/questions.service";
 import { PageReloaderService } from "src/app/shared/services/page-reloader.service";
+import { CommentService } from "src/app/shared/services/comment.service";
 
 @Component({
     selector: "home",
@@ -70,6 +72,7 @@ export class QAPanelComponent implements OnInit {
     questions$!: Observable<QUESTION_MODEL[]>;
     error$!: Observable<string>;
     answerForm!: FormGroup;
+    commentForm!: FormGroup;
     // RETRIEVE AND DECODE TOKEN
     private TOKEN = localStorage.getItem("TOKEN");
     private DECODED_TOKEN = DECODE_TOKEN(this.TOKEN);
@@ -97,6 +100,7 @@ export class QAPanelComponent implements OnInit {
     bullHornIcon: IconDefinition = faBullhorn;
     tableIcon: IconDefinition = faTableCells;
     inboxIcon: IconDefinition = faMessage;
+    commentIcon: IconDefinition = faComment;
     paperPlaneIcon: IconDefinition = faPaperPlane;
     thumbsUpIcon: IconDefinition = faThumbsUp;
     eyeIcon: IconDefinition = faEye;
@@ -113,6 +117,7 @@ export class QAPanelComponent implements OnInit {
         private messageBoxService: MessageBoxService,
         private questionService: QuestionService,
         private answerService: AnswerService,
+        private commentService: CommentService,
         private authenticationService: AuthenticationService,
         private pageReloaderService: PageReloaderService,
         private tempService: TempService
@@ -122,8 +127,14 @@ export class QAPanelComponent implements OnInit {
         this.displayQuestions();
         this.error$ = this.store.pipe(select(fromQuestion.getError));
 
+        // INITIALIZE answerForm
         this.answerForm = this.formBuilder.group({
             answer: ["", [Validators.required]]
+        });
+
+        // INITIALIZE commentForm
+        this.commentForm = this.formBuilder.group({
+            comment: ["", [Validators.required]]
         });
     }
 
@@ -245,5 +256,24 @@ export class QAPanelComponent implements OnInit {
                 this.pageReloaderService.REFRESH_ROUTE();
             }, 1200);
         }
+    }
+
+    addComment(answer_id: number) {
+        const comment: any = {
+            comment: this.commentForm.value.comment,
+            answer_id: answer_id,
+            user_id: this.DECODED_TOKEN.user_id
+        };
+
+        this.commentService.addComment(comment).subscribe(() => {
+            this.messageBoxService.SHOW_SUCCESS_MESSAGE("Adding comment...");
+
+            this.commentForm.reset();
+        },
+            (error) => {
+                this.messageBoxService.SHOW_ERROR_MESSAGE(`Failed to add comment: ${error.message}`)
+                console.error(error);
+            }
+        );
     }
 }                                                                                                                                                        

@@ -27,7 +27,6 @@ import {
     faDoorOpen
 } from "@fortawesome/free-solid-svg-icons";
 import { AskQuestionComponent } from "../../pop-ups/questions/ask-question/ask-question.component";
-import { PopUpService } from "src/app/shared/services/pop-up.service";
 import { EditQuestionComponent } from "../../pop-ups/questions/edit-question/edit-question.component";
 import { Observable } from "rxjs";
 import { USER_MODEL } from "src/app/shared/models/user.model";

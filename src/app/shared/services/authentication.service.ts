@@ -34,7 +34,7 @@ export class AuthenticationService {
         }),
             catchError((error: any) => {
                 // DISPLAY ERROR MESSAGE
-                this.messageBoxService.SHOW_ERROR_MESSAGE(error.error);
+                this.messageBoxService.SHOW_ERROR_MESSAGE(error.error.message);
                 return throwError(error);
             })
         );

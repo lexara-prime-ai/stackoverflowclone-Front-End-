@@ -24,6 +24,8 @@ import {
   IconDefinition,
   faExclamationTriangle,
 } from "@fortawesome/free-solid-svg-icons";
+import { MessageBoxService } from "src/app/shared/services/message-box.service";
+import { UserService } from "src/app/shared/services/users.service";
 
 @Component({
   selector: "password-reset",
@@ -41,20 +43,35 @@ export class PasswordResetComponent implements OnInit {
   DEFAULT_FORM_DATA = DEFAULT_FORM_DATA;
   PASSWORD_RESET_FORM!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private router: Router) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService,
+    private messageBoxService: MessageBoxService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.PASSWORD_RESET_FORM = this.formBuilder.group({
-      email: ["", [Validators.required]],
-      password: ["", [Validators.required]]
+      email: ["", [Validators.required, this.userService.EMAIL_PATTERN_VALIDATOR()]],
+      password: ["", [Validators.required, this.userService.PASSWORD_PATTERN_VALIDATOR()]]
     });
   }
 
   RESET_PASSWORD() {
-    alert("Password reset successful!");
-    // REDIRECT USER TO SIGN IN PAGE AFTER 2s
-    setTimeout(() => {
-      this.router.navigate(['sign-in']);
-    }, 2000)
+    if (this.PASSWORD_RESET_FORM.valid) {
+      this.userService.resetPassword(this.PASSWORD_RESET_FORM).subscribe(() => {
+        // DISPLAY SUCCESS MESSAGE
+        this.messageBoxService.SHOW_SUCCESS_MESSAGE("Resetting password...");
+        // RESET FORM
+        this.PASSWORD_RESET_FORM.reset();
+        // REDIRECT USER TO SIGN IN PAGE AFTER 1.5s
+        setTimeout(() => {
+          this.router.navigate(['sign-in']);
+        }, 1500)
+      },
+        (error) => {
+          this.messageBoxService.SHOW_ERROR_MESSAGE(error.error);
+        });
+    }
   }
 }
